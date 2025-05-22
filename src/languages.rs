@@ -10,8 +10,8 @@ pub enum Language {
 impl Language {
     pub fn from_str(src: &str) -> Self {
         match src {
-            LANG_EN => Self::Ar,
-            _ => Self::En,
+            LANG_AR => Self::Ar,
+            _ => Self::default(),
         }
     }
 
@@ -20,5 +20,11 @@ impl Language {
             Self::En => LANG_EN,
             Self::Ar => LANG_AR,
         }
+    }
+}
+
+impl Default for Language {
+    fn default() -> Self {
+        Self::En
     }
 }
