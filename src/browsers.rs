@@ -34,4 +34,25 @@ impl Browser {
             Browser::Edge => Some(EDGE),
         }
     }
+
+    pub fn detect_from_user_agent(user_agent_lower_case: &str) -> Self {
+        if user_agent_lower_case.contains("edg/") {
+            return Self::Edge;
+        }
+        if user_agent_lower_case.contains("opr/") || user_agent_lower_case.contains("opera") {
+            return Self::Opera;
+        }
+        if user_agent_lower_case.contains("firefox") {
+            return Self::Firefox;
+        }
+
+        if user_agent_lower_case.contains("chrome") {
+            return Self::Chrome;
+        }
+        if user_agent_lower_case.contains("safari") {
+            return Self::Safari;
+        }
+
+        Self::Unknown
+    }
 }
