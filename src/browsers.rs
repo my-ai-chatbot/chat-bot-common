@@ -3,7 +3,7 @@ pub const FIREFOX: &'static str = "firefox";
 pub const OPERA: &'static str = "opera";
 pub const SAFARI: &'static str = "safari";
 pub const EDGE: &'static str = "edge";
-
+#[derive(Debug, Clone, Copy)]
 pub enum Browser {
     Unknown,
     Chrome,
