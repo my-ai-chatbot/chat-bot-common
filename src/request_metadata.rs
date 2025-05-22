@@ -15,11 +15,11 @@ impl RequestMetadata {
 
         for ctx in metadata {
             if ctx.starts_with(LANG_PREFIX) {
-                lang = Language::from_str(&ctx[LANG_PREFIX.len() + 1..])
+                lang = Language::from_str(&ctx[LANG_PREFIX.len()..])
             }
 
             if ctx.starts_with(BROWSER_PREFIX) {
-                browser = Browser::from_str(&ctx[BROWSER_PREFIX.len() + 1..])
+                browser = Browser::from_str(&ctx[BROWSER_PREFIX.len()..])
             }
         }
 
@@ -36,5 +36,19 @@ impl RequestMetadata {
         }
 
         result
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::RequestMetadata;
+
+    #[test]
+    fn test_parsing_metadata() {
+        let ctx = vec!["lang:ar"];
+
+        let meta_data = RequestMetadata::new(ctx.into_iter());
+
+        assert_eq!("ar", meta_data.lang.as_str())
     }
 }
