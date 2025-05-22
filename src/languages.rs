@@ -8,6 +8,8 @@ pub enum Language {
 }
 
 impl Language {
+    pub const ALL_LANGUAGES: &[Self] = &[Self::En, Self::Ar];
+
     pub fn from_str(src: &str) -> Self {
         match src {
             LANG_AR => Self::Ar,
