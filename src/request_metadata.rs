@@ -2,16 +2,19 @@ use crate::{browsers::*, languages::*};
 
 pub const LANG_PREFIX: &'static str = "lang:";
 pub const BROWSER_PREFIX: &'static str = "browser:";
+pub const TENANT_PREFIX: &'static str = "tenant:";
 
 pub struct RequestMetadata {
     pub lang: Language,
     pub browser: Browser,
+    pub tenant: String,
 }
 
 impl RequestMetadata {
     pub fn new<'s>(metadata: impl Iterator<Item = &'s str>) -> Self {
         let mut lang = Language::En;
         let mut browser = Browser::Unknown;
+        let mut tenant = None;
 
         for ctx in metadata {
             if ctx.starts_with(LANG_PREFIX) {
@@ -21,13 +24,29 @@ impl RequestMetadata {
             if ctx.starts_with(BROWSER_PREFIX) {
                 browser = Browser::from_str(&ctx[BROWSER_PREFIX.len()..])
             }
+
+            if ctx.starts_with(TENANT_PREFIX) {
+                let value = &ctx[TENANT_PREFIX.len()..];
+                tenant = Some(value.to_string());
+            }
         }
 
-        RequestMetadata { lang, browser }
+        if tenant.is_none() {
+            println!("Can not extract tenant from metadata");
+            panic!("Can not extract tenant from metadata");
+        }
+
+        RequestMetadata {
+            lang,
+            browser,
+            tenant: tenant.unwrap(),
+        }
     }
 
     pub fn to_metadata(&self) -> Vec<String> {
-        let mut result = Vec::with_capacity(2);
+        let mut result = Vec::with_capacity(3);
+
+        result.push(format!("{}{}", TENANT_PREFIX, self.tenant.as_str()));
 
         result.push(format!("{}{}", LANG_PREFIX, self.lang.as_str()));
 
