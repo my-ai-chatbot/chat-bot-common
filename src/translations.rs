@@ -1,6 +1,6 @@
 use std::collections::BTreeMap;
 
-pub fn get_translations() -> BTreeMap<&'static str, &'static str> {
+pub fn en() -> BTreeMap<&'static str, &'static str> {
     let mut result = BTreeMap::new();
     result.insert("widget_caption", "Chat with Sarah");
     result.insert("title_header", "I'm Sarah, Your Expert in Elevated Driving");
