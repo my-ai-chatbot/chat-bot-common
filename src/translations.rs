@@ -10,5 +10,8 @@ pub fn en() -> BTreeMap<&'static str, &'static str> {
     result.insert("is_speaking", "Sarah is speaking...");
     result.insert("end_chat", "End chat");
     result.insert("voice_chat", "Voice chat");
+    result.insert("widget_header_title", "Sarah");
+    result.insert("widget_header_subtitle", "Your expert in elevated Driving");
+
     result
 }
