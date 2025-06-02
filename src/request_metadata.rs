@@ -1,10 +1,12 @@
+use serde::*;
+
 use crate::{browsers::*, languages::*};
 
 pub const LANG_PREFIX: &'static str = "lang:";
 pub const BROWSER_PREFIX: &'static str = "browser:";
 pub const TENANT_PREFIX: &'static str = "tenant:";
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RequestMetadata {
     pub lang: Language,
     pub browser: Browser,

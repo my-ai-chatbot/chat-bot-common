@@ -1,7 +1,9 @@
+use serde::*;
+
 pub const LANG_EN: &'static str = "en";
 pub const LANG_AR: &'static str = "ar";
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, Serialize, Deserialize)]
 pub enum Language {
     En,
     Ar,

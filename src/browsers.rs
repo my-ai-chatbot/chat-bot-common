@@ -1,9 +1,11 @@
+use serde::*;
+
 pub const CHROME: &'static str = "chrome";
 pub const FIREFOX: &'static str = "firefox";
 pub const OPERA: &'static str = "opera";
 pub const SAFARI: &'static str = "safari";
 pub const EDGE: &'static str = "edge";
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, Serialize, Deserialize)]
 pub enum Browser {
     Unknown,
     Chrome,
