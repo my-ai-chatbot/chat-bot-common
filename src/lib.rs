@@ -4,4 +4,5 @@ pub mod browsers;
 pub mod client_data_type;
 pub mod languages;
 pub mod request_metadata;
+pub mod stt_options;
 pub mod translations;
