@@ -12,12 +12,12 @@ pub enum SttOption {
 }
 
 impl SttOption {
-    pub fn from_str(src: &str) -> Self {
+    pub fn from_str(src: &str, lang: Language) -> Self {
         match src {
             STT_ELEVEN_LABS => Self::ElevenLabs,
             STT_KYUTAI => Self::Kyutai,
             STT_MUNSIT => Self::Munsit,
-            _ => Default::default(),
+            _ => get_default_by_language(&lang),
         }
     }
 
