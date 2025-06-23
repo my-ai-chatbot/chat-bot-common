@@ -1,8 +1,8 @@
 use crate::languages::Language;
 
-pub const SST_ELEVEN_LABS: &'static str = "11labs";
-pub const SST_KYUTAI: &'static str = "kyutai";
-pub const SST_MUNSIT: &'static str = "munsit";
+pub const STT_ELEVEN_LABS: &'static str = "11labs";
+pub const STT_KYUTAI: &'static str = "kyutai";
+pub const STT_MUNSIT: &'static str = "munsit";
 
 #[derive(Debug, Clone, Copy)]
 pub enum SttOption {
@@ -14,10 +14,18 @@ pub enum SttOption {
 impl SttOption {
     pub fn from_str(src: &str) -> Self {
         match src {
-            SST_ELEVEN_LABS => Self::ElevenLabs,
-            SST_KYUTAI => Self::Kyutai,
-            SST_MUNSIT => Self::Munsit,
+            STT_ELEVEN_LABS => Self::ElevenLabs,
+            STT_KYUTAI => Self::Kyutai,
+            STT_MUNSIT => Self::Munsit,
             _ => Default::default(),
+        }
+    }
+
+    pub fn as_str(&self) -> &'static str {
+        match self {
+            SttOption::ElevenLabs => STT_ELEVEN_LABS,
+            SttOption::Kyutai => STT_KYUTAI,
+            SttOption::Munsit => STT_MUNSIT,
         }
     }
 }
@@ -28,9 +36,9 @@ impl Default for SttOption {
     }
 }
 
-pub const ALL: &[&'static str] = &[SST_ELEVEN_LABS, SST_KYUTAI, SST_MUNSIT];
+pub const ALL: &[&'static str] = &[STT_ELEVEN_LABS, STT_KYUTAI, STT_MUNSIT];
 
-pub fn get_default(lang_id: &Language) -> SttOption {
+pub fn get_default_by_language(lang_id: &Language) -> SttOption {
     match lang_id {
         Language::En => SttOption::ElevenLabs,
         Language::Ar => SttOption::Munsit,
