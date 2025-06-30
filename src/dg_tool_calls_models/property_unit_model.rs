@@ -1,7 +1,6 @@
 use serde::*;
 
-use crate::models::ProjectJsonModel;
-
+use super::*;
 #[derive(Serialize, Deserialize, Clone)]
 pub struct PropertyUnitJsonModel {
     pub usage_type: String,
