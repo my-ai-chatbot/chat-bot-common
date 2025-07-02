@@ -24,9 +24,8 @@ pub struct PropertyUnitJsonModel {
     pub balcony_area_sq_meters: Option<f64>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub balcony_area_sq_feet: Option<f64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub unit_plan: Option<String>,
-
+    //#[serde(skip_serializing_if = "Option::is_none")]
+    // pub unit_plan: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub saleable_area_sq_meeters: Option<f64>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -41,8 +40,8 @@ pub struct PropertyUnitJsonModel {
     pub project_currency: String,
     pub country: String,
     pub city: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub plot_plan: Option<String>,
+    //    #[serde(skip_serializing_if = "Option::is_none")]
+    //    pub plot_plan: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub parking_slots: Option<u32>,
 
