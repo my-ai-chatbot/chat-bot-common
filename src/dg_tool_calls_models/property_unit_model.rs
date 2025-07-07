@@ -1,5 +1,7 @@
 use serde::*;
 
+use crate::CurrencyConverter;
+
 use super::*;
 #[derive(Serialize, Deserialize, Clone)]
 pub struct PropertyUnitJsonModel {
@@ -54,16 +56,33 @@ pub struct PropertyUnitJsonModel {
 }
 
 impl PropertyUnitJsonModel {
-    pub fn filter_by_price(&self, min_price: Option<f64>, max_price: Option<f64>) -> bool {
-        if let Some(min_price) = min_price {
-            if let Some(max_price) = max_price {
-                return min_price <= self.unit_price && self.unit_price <= max_price;
-            }
-            return min_price <= self.unit_price;
+    pub fn filter_by_price(
+        &self,
+        min_price_usd: Option<f64>,
+        max_price_usd: Option<f64>,
+        currency_converter: &impl CurrencyConverter,
+    ) -> bool {
+        let unit_price_usd =
+            currency_converter.convert_to_usd(self.unit_price, &self.project_currency);
+
+        if unit_price_usd.is_none() {
+            panic!(
+                "Unknown currency {} for property {}",
+                self.project_currency, self.project_name
+            );
         }
 
-        if let Some(max_price) = max_price {
-            return self.unit_price <= max_price;
+        let unit_price_usd = unit_price_usd.unwrap();
+
+        if let Some(min_price) = min_price_usd {
+            if let Some(max_price_usd) = max_price_usd {
+                return min_price <= unit_price_usd && unit_price_usd <= max_price_usd;
+            }
+            return min_price <= unit_price_usd;
+        }
+
+        if let Some(max_price_usd) = max_price_usd {
+            return unit_price_usd <= max_price_usd;
         }
         false
     }
