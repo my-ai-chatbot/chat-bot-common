@@ -1,7 +1,5 @@
 use serde::*;
 
-use crate::CurrencyConverter;
-
 use super::*;
 #[derive(Serialize, Deserialize, Clone)]
 pub struct PropertyUnitJsonModel {
@@ -9,7 +7,8 @@ pub struct PropertyUnitJsonModel {
     pub unit_type: String,
     pub unit_price: f64,
 
-    pub unit_price_in_usd: f64,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub unit_price_in_usd: Option<f64>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
     pub expected_completion_year: Option<u16>,
@@ -58,23 +57,16 @@ pub struct PropertyUnitJsonModel {
 }
 
 impl PropertyUnitJsonModel {
-    pub fn filter_by_price(
-        &self,
-        min_price_usd: Option<f64>,
-        max_price_usd: Option<f64>,
-        currency_converter: &impl CurrencyConverter,
-    ) -> bool {
-        let unit_price_usd =
-            currency_converter.convert_to_usd(self.unit_price, &self.project_currency);
-
-        if unit_price_usd.is_none() {
-            panic!(
+    pub fn filter_by_price(&self, min_price_usd: Option<f64>, max_price_usd: Option<f64>) -> bool {
+        if self.unit_price_in_usd.is_none() {
+            println!(
                 "Unknown currency {} for property {}",
                 self.project_currency, self.project_name
             );
+            return false;
         }
 
-        let unit_price_usd = unit_price_usd.unwrap();
+        let unit_price_usd = self.unit_price_in_usd.unwrap();
 
         if let Some(min_price) = min_price_usd {
             if let Some(max_price_usd) = max_price_usd {
