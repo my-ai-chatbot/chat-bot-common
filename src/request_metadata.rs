@@ -6,6 +6,7 @@ pub const LANG_PREFIX: &'static str = "lang:";
 pub const BROWSER_PREFIX: &'static str = "browser:";
 pub const TENANT_PREFIX: &'static str = "tenant:";
 pub const SESSION_PREFIX: &'static str = "session:";
+pub const TIMEZONE_PREFIX: &'static str = "tz:";
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RequestMetadata {
@@ -13,6 +14,7 @@ pub struct RequestMetadata {
     pub browser: Browser,
     pub tenant: String,
     pub session_id: String,
+    pub time_zone: String,
 }
 
 impl RequestMetadata {
@@ -21,6 +23,7 @@ impl RequestMetadata {
         let mut browser = Browser::Unknown;
         let mut tenant = None;
         let mut session = None;
+        let mut time_zone = None;
 
         for ctx in metadata {
             if ctx.starts_with(LANG_PREFIX) {
@@ -40,6 +43,11 @@ impl RequestMetadata {
                 let value = &ctx[SESSION_PREFIX.len()..];
                 session = Some(value.to_string());
             }
+
+            if ctx.starts_with(TIMEZONE_PREFIX) {
+                let value = &ctx[TIMEZONE_PREFIX.len()..];
+                time_zone = Some(value.to_string());
+            }
         }
 
         if tenant.is_none() {
@@ -52,11 +60,17 @@ impl RequestMetadata {
             panic!("Can not extract session from metadata");
         }
 
+        if time_zone.is_none() {
+            println!("Can not extract timezone from metadata");
+            panic!("Can not extract timezone from metadata");
+        }
+
         RequestMetadata {
             lang,
             browser,
             tenant: tenant.unwrap(),
             session_id: session.unwrap(),
+            time_zone: time_zone.unwrap(),
         }
     }
 
@@ -67,6 +81,7 @@ impl RequestMetadata {
         result.push(format!("{}{}", SESSION_PREFIX, self.session_id.as_str()));
 
         result.push(format!("{}{}", LANG_PREFIX, self.lang.as_str()));
+        result.push(format!("{}{}", TIMEZONE_PREFIX, self.time_zone));
 
         if let Some(browser) = self.browser.as_str() {
             result.push(format!("{}{}", BROWSER_PREFIX, browser));
