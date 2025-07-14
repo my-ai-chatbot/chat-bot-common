@@ -5,5 +5,5 @@ pub struct SalesOfficeJsonModel {
     pub city: String,
     pub addresses: Vec<String>,
     pub phones: Vec<String>,
-    pub img_url: Option<String>,
+    pub img_url: String,
 }
