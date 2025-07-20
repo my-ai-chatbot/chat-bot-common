@@ -1,7 +1,9 @@
+use rust_extensions::StrOrString;
+
 #[derive(Debug, Clone)]
 pub struct CurrencyRate {
-    pub from_currency: String,
-    pub to_currency: String,
+    pub from_currency: StrOrString<'static>,
+    pub to_currency: StrOrString<'static>,
     pub rate: f64,
 }
 
@@ -20,11 +22,15 @@ impl CurrencyConverter {
         }
 
         for itm in &self.data {
-            if itm.from_currency == from_currency && itm.to_currency == to_currency {
+            if itm.from_currency.as_str() == from_currency
+                && itm.to_currency.as_str() == to_currency
+            {
                 return Some(amount * itm.rate);
             }
 
-            if itm.from_currency == to_currency && itm.to_currency == from_currency {
+            if itm.from_currency.as_str() == to_currency
+                && itm.to_currency.as_str() == from_currency
+            {
                 return Some(amount / itm.rate);
             }
         }
@@ -34,7 +40,8 @@ impl CurrencyConverter {
 
     pub fn update_rate(&mut self, rate: CurrencyRate) {
         let index = self.data.iter().position(|itm| {
-            itm.from_currency == rate.from_currency && itm.to_currency == rate.to_currency
+            itm.from_currency.as_str() == rate.from_currency.as_str()
+                && itm.to_currency.as_str() == rate.to_currency.as_str()
         });
 
         match index {
