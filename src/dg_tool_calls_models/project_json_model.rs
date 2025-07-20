@@ -2,6 +2,7 @@ use serde::*;
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct ProjectJsonModel {
+    pub id: String,
     pub title: String,
     pub description: String,
     pub image: String,
