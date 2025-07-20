@@ -15,6 +15,10 @@ impl CurrencyConverter {
     }
 
     pub fn convert(&self, from_currency: &str, to_currency: &str, amount: f64) -> Option<f64> {
+        if from_currency == to_currency {
+            return Some(amount);
+        }
+
         for itm in &self.data {
             if itm.from_currency == from_currency && itm.to_currency == to_currency {
                 return Some(amount * itm.rate);
