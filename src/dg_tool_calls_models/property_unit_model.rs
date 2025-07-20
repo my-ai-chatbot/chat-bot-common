@@ -1,7 +1,7 @@
 use serde::*;
 
 use super::*;
-#[derive(Serialize, Deserialize, Clone)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct PropertyUnitJsonModel {
     pub usage_type: String,
     pub unit_type: String,

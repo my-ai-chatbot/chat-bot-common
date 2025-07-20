@@ -1,6 +1,6 @@
 use serde::*;
 
-#[derive(Serialize, Deserialize, Clone)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct ProjectJsonModel {
     pub title: String,
     pub description: String,
