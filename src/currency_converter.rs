@@ -38,6 +38,35 @@ impl CurrencyConverter {
         None
     }
 
+    pub fn convert_opt(
+        &self,
+        from_currency: &str,
+        to_currency: &str,
+        amount: Option<f64>,
+    ) -> Option<f64> {
+        let amount = amount?;
+
+        if from_currency == to_currency {
+            return Some(amount);
+        }
+
+        for itm in &self.data {
+            if itm.from_currency.as_str() == from_currency
+                && itm.to_currency.as_str() == to_currency
+            {
+                return Some(amount * itm.rate);
+            }
+
+            if itm.from_currency.as_str() == to_currency
+                && itm.to_currency.as_str() == from_currency
+            {
+                return Some(amount / itm.rate);
+            }
+        }
+
+        None
+    }
+
     pub fn update_rate(&mut self, rate: CurrencyRate) {
         let index = self.data.iter().position(|itm| {
             itm.from_currency.as_str() == rate.from_currency.as_str()
