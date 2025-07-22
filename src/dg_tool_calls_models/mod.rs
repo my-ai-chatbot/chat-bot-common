@@ -4,3 +4,5 @@ mod property_unit_model;
 pub use property_unit_model::*;
 mod sales_office;
 pub use sales_office::*;
+mod find_property_response_json_model;
+pub use find_property_response_json_model::*;
