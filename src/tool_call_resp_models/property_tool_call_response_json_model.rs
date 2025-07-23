@@ -13,6 +13,9 @@ pub struct PropertyToolCallResponseJsonModel {
     pub unit_price: f64,
 
     #[serde(skip_serializing_if = "Option::is_none")]
+    pub unit_category: Option<String>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub unit_price_in_usd: Option<f64>,
 
     pub expected_completion_year: Option<u16>,

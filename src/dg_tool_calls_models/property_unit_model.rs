@@ -89,6 +89,7 @@ impl PropertyUnitJsonModel {
             parking_slots: self.parking_slots.clone(),
             no_of_bedrooms: self.no_of_bedrooms.clone(),
             no_of_bathrooms: self.no_of_bathrooms.clone(),
+            unit_category: self.unit_category.clone(),
         }
     }
 
