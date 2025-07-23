@@ -57,6 +57,9 @@ pub struct PropertyUnitJsonModel {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub no_of_bathrooms: Option<u32>,
 
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub floor: Option<String>,
+
     pub project: ProjectJsonModel,
 }
 
@@ -90,6 +93,7 @@ impl PropertyUnitJsonModel {
             no_of_bedrooms: self.no_of_bedrooms.clone(),
             no_of_bathrooms: self.no_of_bathrooms.clone(),
             unit_category: self.unit_category.clone(),
+            floor: self.floor.clone(),
         }
     }
 
