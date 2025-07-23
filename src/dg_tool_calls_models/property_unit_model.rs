@@ -9,6 +9,8 @@ pub struct PropertyUnitJsonModel {
     pub unit_type: String,
     pub unit_price: f64,
 
+    pub unit_category: String,
+
     #[serde(skip_serializing_if = "Option::is_none")]
     pub unit_price_in_usd: Option<f64>,
 
