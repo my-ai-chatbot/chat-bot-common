@@ -1,5 +1,7 @@
 use serde::*;
 
+use crate::tool_call_resp_models::*;
+
 use super::*;
 #[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct PropertyUnitJsonModel {
@@ -57,8 +59,8 @@ pub struct PropertyUnitJsonModel {
 }
 
 impl PropertyUnitJsonModel {
-    pub fn to_result_model(&self) -> FoundPropertyToolCallResponseJsonModel {
-        FoundPropertyToolCallResponseJsonModel {
+    pub fn to_result_model(&self) -> PropertyToolCallResponseJsonModel {
+        PropertyToolCallResponseJsonModel {
             id: self.project.id.clone(),
             title: self.project.title.clone(),
             description: self.project.description.clone(),

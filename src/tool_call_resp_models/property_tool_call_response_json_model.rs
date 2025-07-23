@@ -1,7 +1,7 @@
 use serde::*;
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
-pub struct FoundPropertyToolCallResponseJsonModel {
+pub struct PropertyToolCallResponseJsonModel {
     pub id: String,
     pub title: String,
     pub description: String,
