@@ -15,7 +15,6 @@ pub struct FoundPropertyToolCallResponseJsonModel {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub unit_price_in_usd: Option<f64>,
 
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub expected_completion_year: Option<u16>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
