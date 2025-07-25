@@ -16,7 +16,7 @@ pub struct RequestMetadata {
     pub tenant: String,
     pub session_id: String,
     pub time_zone: String,
-    pub country_by_ip: Option<String>,
+    pub country_by_ip: String,
 }
 
 impl RequestMetadata {
@@ -73,13 +73,18 @@ impl RequestMetadata {
             panic!("Can not extract timezone from metadata");
         }
 
+        if country_by_ip.is_none() {
+            println!("Can not extract country from metadata");
+            panic!("Can not extract country from metadata");
+        }
+
         RequestMetadata {
             lang,
             browser,
             tenant: tenant.unwrap(),
             session_id: session.unwrap(),
             time_zone: time_zone.unwrap(),
-            country_by_ip: country_by_ip,
+            country_by_ip: country_by_ip.unwrap(),
         }
     }
 
@@ -96,9 +101,11 @@ impl RequestMetadata {
             result.push(format!("{}{}", BROWSER_PREFIX, browser));
         }
 
-        if let Some(country_by_ip) = self.country_by_ip.as_ref() {
-            result.push(format!("{}{}", COUNTRY_BY_IP_PREFIX, country_by_ip));
-        }
+        result.push(format!(
+            "{}{}",
+            COUNTRY_BY_IP_PREFIX,
+            self.country_by_ip.as_str()
+        ));
 
         result
     }
