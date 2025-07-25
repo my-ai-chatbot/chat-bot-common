@@ -7,6 +7,7 @@ pub const BROWSER_PREFIX: &'static str = "browser:";
 pub const TENANT_PREFIX: &'static str = "tenant:";
 pub const SESSION_PREFIX: &'static str = "session:";
 pub const TIMEZONE_PREFIX: &'static str = "tz:";
+pub const COUNTRY_BY_IP_PREFIX: &'static str = "ip-country:";
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RequestMetadata {
@@ -15,6 +16,7 @@ pub struct RequestMetadata {
     pub tenant: String,
     pub session_id: String,
     pub time_zone: String,
+    pub country_by_ip: Option<String>,
 }
 
 impl RequestMetadata {
@@ -24,6 +26,7 @@ impl RequestMetadata {
         let mut tenant = None;
         let mut session = None;
         let mut time_zone = None;
+        let mut country_by_ip = None;
 
         for ctx in metadata {
             if ctx.starts_with(LANG_PREFIX) {
@@ -48,6 +51,11 @@ impl RequestMetadata {
                 let value = &ctx[TIMEZONE_PREFIX.len()..];
                 time_zone = Some(value.to_string());
             }
+
+            if ctx.starts_with(COUNTRY_BY_IP_PREFIX) {
+                let value = &ctx[COUNTRY_BY_IP_PREFIX.len()..];
+                country_by_ip = Some(value.to_string());
+            }
         }
 
         if tenant.is_none() {
@@ -71,6 +79,7 @@ impl RequestMetadata {
             tenant: tenant.unwrap(),
             session_id: session.unwrap(),
             time_zone: time_zone.unwrap(),
+            country_by_ip: country_by_ip,
         }
     }
 
@@ -85,6 +94,10 @@ impl RequestMetadata {
 
         if let Some(browser) = self.browser.as_str() {
             result.push(format!("{}{}", BROWSER_PREFIX, browser));
+        }
+
+        if let Some(country_by_ip) = self.country_by_ip.as_ref() {
+            result.push(format!("{}{}", COUNTRY_BY_IP_PREFIX, country_by_ip));
         }
 
         result
