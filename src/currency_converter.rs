@@ -54,13 +54,17 @@ impl CurrencyConverter {
             if itm.from_currency.as_str() == from_currency
                 && itm.to_currency.as_str() == to_currency
             {
-                return Some(amount * itm.rate);
+                let result = amount * itm.rate;
+                let rounded = (result * 100.0).round() / 100.0;
+                return Some(rounded);
             }
 
             if itm.from_currency.as_str() == to_currency
                 && itm.to_currency.as_str() == from_currency
             {
-                return Some(amount / itm.rate);
+                let result = amount / itm.rate;
+                let rounded = (result * 100.0).round() / 100.0;
+                return Some(rounded);
             }
         }
 
