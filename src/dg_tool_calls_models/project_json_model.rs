@@ -11,7 +11,4 @@ pub struct ProjectJsonModel {
     pub project_url: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub amenities: Option<Vec<String>>,
-    pub country: Option<String>,
-    pub city: Option<String>,
-    pub completion_year: Option<u16>,
 }
