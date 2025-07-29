@@ -6,6 +6,7 @@ pub const LANG_PREFIX: &'static str = "lang:";
 pub const BROWSER_PREFIX: &'static str = "browser:";
 pub const TENANT_PREFIX: &'static str = "tenant:";
 pub const SESSION_PREFIX: &'static str = "session:";
+pub const TIME_OFFSET_PREFIX: &'static str = "time_offset:";
 pub const TIMEZONE_PREFIX: &'static str = "tz:";
 pub const COUNTRY_BY_IP_PREFIX: &'static str = "ip-country:";
 
@@ -16,6 +17,7 @@ pub struct RequestMetadata {
     pub tenant: String,
     pub session_id: String,
     pub time_zone: String,
+    pub time_offset: String,
     pub country_by_ip: String,
 }
 
@@ -26,6 +28,7 @@ impl RequestMetadata {
         let mut tenant = None;
         let mut session = None;
         let mut time_zone = None;
+        let mut time_offset = None;
         let mut country_by_ip = None;
 
         for ctx in metadata {
@@ -52,6 +55,11 @@ impl RequestMetadata {
                 time_zone = Some(value.to_string());
             }
 
+            if ctx.starts_with(TIME_OFFSET_PREFIX) {
+                let value = &ctx[TIME_OFFSET_PREFIX.len()..];
+                time_offset = Some(value.to_string());
+            }
+
             if ctx.starts_with(COUNTRY_BY_IP_PREFIX) {
                 let value = &ctx[COUNTRY_BY_IP_PREFIX.len()..];
                 country_by_ip = Some(value.to_string());
@@ -73,6 +81,11 @@ impl RequestMetadata {
             panic!("Can not extract timezone from metadata");
         }
 
+        if time_offset.is_none() {
+            println!("Can not extract time_offset from metadata");
+            panic!("Can not extract time_offset from metadata");
+        }
+
         if country_by_ip.is_none() {
             println!("Can not extract country from metadata");
             panic!("Can not extract country from metadata");
@@ -84,6 +97,7 @@ impl RequestMetadata {
             tenant: tenant.unwrap(),
             session_id: session.unwrap(),
             time_zone: time_zone.unwrap(),
+            time_offset: time_offset.unwrap(),
             country_by_ip: country_by_ip.unwrap(),
         }
     }
@@ -96,6 +110,7 @@ impl RequestMetadata {
 
         result.push(format!("{}{}", LANG_PREFIX, self.lang.as_str()));
         result.push(format!("{}{}", TIMEZONE_PREFIX, self.time_zone));
+        result.push(format!("{}{}", TIME_OFFSET_PREFIX, self.time_offset));
 
         if let Some(browser) = self.browser.as_str() {
             result.push(format!("{}{}", BROWSER_PREFIX, browser));
