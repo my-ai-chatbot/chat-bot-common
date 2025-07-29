@@ -13,4 +13,5 @@ pub struct ProjectJsonModel {
     pub amenities: Option<Vec<String>>,
     pub country: Option<String>,
     pub city: Option<String>,
+    pub completion_year: Option<u16>,
 }
