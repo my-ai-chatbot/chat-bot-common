@@ -5,9 +5,12 @@ pub struct PropertyToolCallResponseJsonModel {
     pub id: String,
     pub title: String,
     pub description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub rich_description: Option<String>,
     #[serde(rename = "type")]
     pub project_type: String,
     pub amenities: Option<Vec<String>>,
+    pub why_invest: Option<Vec<String>>,
     pub usage_type: String,
     pub unit_type: String,
     pub unit_price: f64,

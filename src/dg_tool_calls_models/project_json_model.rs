@@ -5,6 +5,7 @@ pub struct ProjectJsonModel {
     pub id: String,
     pub title: String,
     pub description: String,
+    pub rich_description: Option<String>,
     pub image: String,
     #[serde(rename = "type")]
     pub project_type: String,

@@ -68,6 +68,7 @@ impl PropertyUnitJsonModel {
         PropertyToolCallResponseJsonModel {
             id: self.project.id.clone(),
             title: self.project.title.clone(),
+            rich_description: self.project.rich_description.clone(),
             description: self.project.description.clone(),
             project_type: self.project.project_type.clone(),
             amenities: self.project.amenities.clone(),
@@ -94,6 +95,7 @@ impl PropertyUnitJsonModel {
             no_of_bathrooms: self.no_of_bathrooms.clone(),
             unit_category: self.unit_category.clone(),
             floor: self.floor.clone(),
+            why_invest: self.project.why_invest.clone(),
         }
     }
 
