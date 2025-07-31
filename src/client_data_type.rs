@@ -1,6 +1,7 @@
 pub enum ClientDataType {
     MinaghiAuto,
     DarGlobalRealEstate,
+    SalesTeq,
 }
 
 impl ClientDataType {
@@ -8,6 +9,7 @@ impl ClientDataType {
         match src {
             MINAGHI_AUTO => Self::MinaghiAuto.into(),
             DG_REAL_ESTATE => Self::DarGlobalRealEstate.into(),
+            SALESTEQ => Self::SalesTeq.into(),
             _ => None,
         }
     }
@@ -15,5 +17,6 @@ impl ClientDataType {
 
 pub const MINAGHI_AUTO: &'static str = "minaghi-auto";
 pub const DG_REAL_ESTATE: &'static str = "dg-real-estate";
+pub const SALESTEQ: &'static str = "salesteq";
 
-pub const ALL: &[&'static str] = &[MINAGHI_AUTO, DG_REAL_ESTATE];
+pub const ALL: &[&'static str] = &[MINAGHI_AUTO, DG_REAL_ESTATE, SALESTEQ];
