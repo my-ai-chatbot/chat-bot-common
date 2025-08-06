@@ -15,7 +15,10 @@ pub struct PropertyUnitJsonModel {
     pub unit_price_in_usd: Option<f64>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub expected_completion_year: Option<u16>,
+    pub start_date: Option<u64>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub expected_completion_date: Option<u64>,
 
     pub project_name: String,
 
@@ -76,7 +79,8 @@ impl PropertyUnitJsonModel {
             unit_type: self.unit_type.clone(),
             unit_price: self.unit_price.clone(),
             unit_price_in_usd: self.unit_price_in_usd.clone(),
-            expected_completion_year: self.expected_completion_year.clone(),
+            expected_completion_date: self.expected_completion_date.clone(),
+            start_date: self.start_date.clone(),
             apartment_type: self.apartment_type.clone(),
             area_sq_meters: self.area_sq_meters.clone(),
             area_sq_feet: self.area_sq_feet.clone(),
@@ -125,14 +129,6 @@ impl PropertyUnitJsonModel {
 
     pub fn filter_by_city(&self, city_to_search_lower_case: &str) -> bool {
         return self.city.to_lowercase().contains(city_to_search_lower_case);
-    }
-
-    pub fn filter_by_anticipated_year(&self, year: u16) -> bool {
-        let Some(expected_completion_year) = self.expected_completion_year else {
-            return false;
-        };
-
-        return expected_completion_year == year;
     }
 
     pub fn filter_by_country(&self, country_code: &str) -> bool {
