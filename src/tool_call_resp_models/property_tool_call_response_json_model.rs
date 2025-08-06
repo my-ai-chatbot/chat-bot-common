@@ -21,9 +21,9 @@ pub struct PropertyToolCallResponseJsonModel {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub unit_price_in_usd: Option<f64>,
 
-    pub start_date: Option<u64>,
+    pub start_date: Option<String>,
 
-    pub expected_completion_date: Option<u64>,
+    pub expected_completion_date: Option<String>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
     pub apartment_type: Option<String>,
