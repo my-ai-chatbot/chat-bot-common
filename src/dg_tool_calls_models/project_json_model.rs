@@ -1,3 +1,4 @@
+use rust_extensions::sorted_vec::EntityWithStrKey;
 use serde::*;
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
@@ -14,4 +15,10 @@ pub struct ProjectJsonModel {
     pub amenities: Option<Vec<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub why_invest: Option<Vec<String>>,
+}
+
+impl EntityWithStrKey for ProjectJsonModel {
+    fn get_key(&self) -> &str {
+        &self.id
+    }
 }
