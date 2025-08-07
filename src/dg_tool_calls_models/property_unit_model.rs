@@ -63,18 +63,18 @@ pub struct PropertyUnitJsonModel {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub floor: Option<String>,
 
-    pub project: ProjectJsonModel,
+    pub project_id: String,
 }
 
 impl PropertyUnitJsonModel {
-    pub fn to_result_model(&self) -> PropertyToolCallResponseJsonModel {
+    pub fn to_result_model(&self, project: &ProjectJsonModel) -> PropertyToolCallResponseJsonModel {
         PropertyToolCallResponseJsonModel {
-            id: self.project.id.clone(),
-            title: self.project.title.clone(),
-            rich_description: self.project.rich_description.clone(),
-            description: self.project.description.clone(),
-            project_type: self.project.project_type.clone(),
-            amenities: self.project.amenities.clone(),
+            id: project.id.clone(),
+            title: project.title.clone(),
+            rich_description: project.rich_description.clone(),
+            description: project.description.clone(),
+            project_type: project.project_type.clone(),
+            amenities: project.amenities.clone(),
             usage_type: self.usage_type.clone(),
             unit_type: self.unit_type.clone(),
             unit_price: self.unit_price.clone(),
@@ -99,7 +99,7 @@ impl PropertyUnitJsonModel {
             no_of_bathrooms: self.no_of_bathrooms.clone(),
             unit_category: self.unit_category.clone(),
             floor: self.floor.clone(),
-            why_invest: self.project.why_invest.clone(),
+            why_invest: project.why_invest.clone(),
         }
     }
 
