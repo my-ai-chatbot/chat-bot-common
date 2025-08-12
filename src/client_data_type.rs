@@ -18,5 +18,6 @@ impl ClientDataType {
 pub const MINAGHI_AUTO: &'static str = "minaghi-auto";
 pub const DG_REAL_ESTATE: &'static str = "dg-real-estate";
 pub const SALESTEQ: &'static str = "salesteq";
+pub const SUHER: &'static str = "suher";
 
-pub const ALL: &[&'static str] = &[MINAGHI_AUTO, DG_REAL_ESTATE, SALESTEQ];
+pub const ALL: &[&'static str] = &[MINAGHI_AUTO, DG_REAL_ESTATE, SALESTEQ, SUHER];
