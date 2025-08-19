@@ -2,6 +2,7 @@ use rust_extensions::date_time::DateTimeAsMicroseconds;
 use serde::*;
 
 pub const AUDIT_LOG_CHAT_EVENT: &'static str = "chat-event";
+pub const AI_SUMMARY_EVENT: &'static str = "ai-summary";
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Default, Clone)]
 pub struct AuditLogChatModel {
