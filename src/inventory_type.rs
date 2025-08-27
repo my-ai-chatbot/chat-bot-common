@@ -30,6 +30,6 @@ pub const ALL: &[InventoryType] = &[
     InventoryType::SalesTeq,
 ];
 
-const MINAGHI_AUTO: &'static str = "minaghi-auto";
-const DG_REAL_ESTATE: &'static str = "dg-real-estate";
-const SALESTEQ: &'static str = "salesteq";
+pub const MINAGHI_AUTO: &'static str = "minaghi-auto";
+pub const DG_REAL_ESTATE: &'static str = "dg-real-estate";
+pub const SALESTEQ: &'static str = "salesteq";
