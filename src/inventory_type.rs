@@ -25,9 +25,9 @@ impl InventoryType {
 }
 
 pub const ALL: &[InventoryType] = &[
-    InventoryType::MinaghiAuto,
     InventoryType::DarGlobalRealEstate,
     InventoryType::SalesTeq,
+    InventoryType::MinaghiAuto,
 ];
 
 pub const MINAGHI_AUTO: &'static str = "minaghi-auto";
