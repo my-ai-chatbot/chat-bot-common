@@ -34,7 +34,7 @@ pub const MINAGHI_AUTO: &'static str = "minaghi-auto";
 pub const DG_REAL_ESTATE: &'static str = "dg-real-estate";
 pub const SALESTEQ: &'static str = "salesteq";
 
-impl crate::EnumAsStr for InventoryType {
+impl crate::EnumIterator for InventoryType {
     type TItem = Self;
 
     fn get_value(&self) -> Self

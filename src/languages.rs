@@ -46,7 +46,7 @@ impl Default for Language {
     }
 }
 
-impl crate::EnumAsStr for Language {
+impl crate::EnumIterator for Language {
     type TItem = Self;
 
     fn get_value(&self) -> Self

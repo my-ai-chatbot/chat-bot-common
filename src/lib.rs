@@ -11,7 +11,7 @@ pub mod translations;
 pub use currency_converter::*;
 pub mod tool_call_resp_models;
 
-pub trait EnumAsStr {
+pub trait EnumIterator {
     type TItem;
 
     fn get_value(&self) -> Self::TItem;
