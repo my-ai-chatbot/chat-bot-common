@@ -54,6 +54,13 @@ impl crate::EnumAsStr for Language {
         Self::try_from_str(src)
     }
 
+    fn get_value(&self) -> Self
+    where
+        Self: Sized,
+    {
+        *self
+    }
+
     fn as_str(&self) -> &'static str {
         self.as_str()
     }

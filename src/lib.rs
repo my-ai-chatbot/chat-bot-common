@@ -18,6 +18,10 @@ pub trait EnumAsStr {
 
     fn as_str(&self) -> &'static str;
 
+    fn get_value(&self) -> Self
+    where
+        Self: Sized;
+
     fn get_all(&self) -> impl Iterator<Item = Self>
     where
         Self: Sized;
