@@ -47,12 +47,7 @@ impl Default for Language {
 }
 
 impl crate::EnumAsStr for Language {
-    fn try_from_str(src: &str) -> Option<Self>
-    where
-        Self: Sized,
-    {
-        Self::try_from_str(src)
-    }
+    type TItem = Self;
 
     fn get_value(&self) -> Self
     where

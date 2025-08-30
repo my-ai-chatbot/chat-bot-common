@@ -12,17 +12,11 @@ pub use currency_converter::*;
 pub mod tool_call_resp_models;
 
 pub trait EnumAsStr {
-    fn try_from_str(src: &str) -> Option<Self>
-    where
-        Self: Sized;
+    type TItem;
 
     fn as_str(&self) -> &'static str;
 
-    fn get_value(&self) -> Self
-    where
-        Self: Sized;
+    fn get_value(&self) -> Self::TItem;
 
-    fn get_all(&self) -> impl Iterator<Item = Self>
-    where
-        Self: Sized;
+    fn get_all(&self) -> impl Iterator<Item = Self::TItem>;
 }

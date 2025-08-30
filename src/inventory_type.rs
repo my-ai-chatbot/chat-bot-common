@@ -35,12 +35,7 @@ pub const DG_REAL_ESTATE: &'static str = "dg-real-estate";
 pub const SALESTEQ: &'static str = "salesteq";
 
 impl crate::EnumAsStr for InventoryType {
-    fn try_from_str(src: &str) -> Option<Self>
-    where
-        Self: Sized,
-    {
-        Self::try_from_str(src)
-    }
+    type TItem = Self;
 
     fn as_str(&self) -> &'static str {
         self.as_str()
