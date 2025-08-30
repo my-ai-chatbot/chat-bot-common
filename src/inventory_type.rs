@@ -46,10 +46,10 @@ impl crate::EnumAsStr for InventoryType {
         self.as_str()
     }
 
-    fn get_all(&self) -> &'static [Self]
+    fn get_all() -> impl Iterator<Item = Self>
     where
         Self: Sized,
     {
-        ALL
+        ALL.into_iter().copied()
     }
 }
