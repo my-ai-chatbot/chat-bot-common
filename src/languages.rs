@@ -3,7 +3,7 @@ use serde::*;
 pub const LANG_EN: &'static str = "en";
 pub const LANG_AR: &'static str = "ar";
 
-#[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub enum Language {
     En,
     Ar,
