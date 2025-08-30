@@ -37,10 +37,6 @@ pub const SALESTEQ: &'static str = "salesteq";
 impl crate::EnumAsStr for InventoryType {
     type TItem = Self;
 
-    fn as_str(&self) -> &'static str {
-        self.as_str()
-    }
-
     fn get_value(&self) -> Self
     where
         Self: Sized,
@@ -53,5 +49,11 @@ impl crate::EnumAsStr for InventoryType {
         Self: Sized,
     {
         ALL.into_iter().copied()
+    }
+}
+
+impl crate::ItemAsStr for InventoryType {
+    fn as_str(&self) -> &'static str {
+        self.as_str()
     }
 }

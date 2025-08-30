@@ -14,9 +14,11 @@ pub mod tool_call_resp_models;
 pub trait EnumAsStr {
     type TItem;
 
-    fn as_str(&self) -> &'static str;
-
     fn get_value(&self) -> Self::TItem;
 
     fn get_all(&self) -> impl Iterator<Item = Self::TItem>;
+}
+
+pub trait ItemAsStr {
+    fn as_str(&self) -> &'static str;
 }

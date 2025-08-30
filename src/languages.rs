@@ -56,14 +56,16 @@ impl crate::EnumAsStr for Language {
         *self
     }
 
-    fn as_str(&self) -> &'static str {
-        self.as_str()
-    }
-
     fn get_all(&self) -> impl Iterator<Item = Self>
     where
         Self: Sized,
     {
         Self::ALL_LANGUAGES.iter().copied()
+    }
+}
+
+impl crate::ItemAsStr for Language {
+    fn as_str(&self) -> &'static str {
+        self.as_str()
     }
 }
