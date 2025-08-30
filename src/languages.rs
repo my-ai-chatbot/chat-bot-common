@@ -10,7 +10,7 @@ pub enum Language {
 }
 
 impl Language {
-    pub const ALL_LANGUAGES: &[Self] = &[Self::En, Self::Ar];
+    pub const ALL_LANGUAGES: &'static [Self] = &[Self::En, Self::Ar];
 
     pub fn try_from_str(src: &str) -> Option<Self> {
         match src {
@@ -43,5 +43,25 @@ impl Language {
 impl Default for Language {
     fn default() -> Self {
         Self::En
+    }
+}
+
+impl crate::EnumAsStr for Language {
+    fn try_from_str(src: &str) -> Option<Self>
+    where
+        Self: Sized,
+    {
+        Self::try_from_str(src)
+    }
+
+    fn as_str(&self) -> &'static str {
+        self.as_str()
+    }
+
+    fn get_all(&self) -> &'static [Self]
+    where
+        Self: Sized,
+    {
+        Self::ALL_LANGUAGES
     }
 }

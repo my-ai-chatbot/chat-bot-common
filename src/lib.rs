@@ -10,3 +10,15 @@ pub mod stt_options;
 pub mod translations;
 pub use currency_converter::*;
 pub mod tool_call_resp_models;
+
+pub trait EnumAsStr {
+    fn try_from_str(src: &str) -> Option<Self>
+    where
+        Self: Sized;
+
+    fn as_str(&self) -> &'static str;
+
+    fn get_all(&self) -> &'static [Self]
+    where
+        Self: Sized;
+}

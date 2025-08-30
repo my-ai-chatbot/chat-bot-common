@@ -6,7 +6,7 @@ pub enum InventoryType {
 }
 
 impl InventoryType {
-    pub fn from_str(src: &str) -> Option<Self> {
+    pub fn try_from_str(src: &str) -> Option<Self> {
         match src {
             MINAGHI_AUTO => Self::MinaghiAuto.into(),
             DG_REAL_ESTATE => Self::DarGlobalRealEstate.into(),
@@ -33,3 +33,23 @@ pub const ALL: &[InventoryType] = &[
 pub const MINAGHI_AUTO: &'static str = "minaghi-auto";
 pub const DG_REAL_ESTATE: &'static str = "dg-real-estate";
 pub const SALESTEQ: &'static str = "salesteq";
+
+impl crate::EnumAsStr for InventoryType {
+    fn try_from_str(src: &str) -> Option<Self>
+    where
+        Self: Sized,
+    {
+        Self::try_from_str(src)
+    }
+
+    fn as_str(&self) -> &'static str {
+        self.as_str()
+    }
+
+    fn get_all(&self) -> &'static [Self]
+    where
+        Self: Sized,
+    {
+        ALL
+    }
+}
