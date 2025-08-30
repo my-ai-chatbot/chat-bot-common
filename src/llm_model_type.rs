@@ -7,19 +7,19 @@ pub const GPT_5: &'static str = "gpt-5";
 pub const QWEN3_30B_A3B: &'static str = "Qwen3-30B-A3B";
 
 #[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq, Hash, PartialOrd, Ord)]
-pub enum LlmModel {
+pub enum ChatBotLlmModel {
     Gpt4o,
     Gpt5,
     Qwen3_30BA3n,
 }
 
-impl Default for LlmModel {
+impl Default for ChatBotLlmModel {
     fn default() -> Self {
         Self::Gpt4o
     }
 }
 
-impl LlmModel {
+impl ChatBotLlmModel {
     pub const ALL: &'static [Self] = &[Self::Gpt4o, Self::Gpt5, Self::Qwen3_30BA3n];
 
     pub fn try_from_str(src: &str) -> Option<Self> {
@@ -40,7 +40,7 @@ impl LlmModel {
     }
 }
 
-impl EnumIterator for LlmModel {
+impl EnumIterator for ChatBotLlmModel {
     type TItem = Self;
 
     fn get_value(&self) -> Self
@@ -58,7 +58,7 @@ impl EnumIterator for LlmModel {
     }
 }
 
-impl ItemAsStr for LlmModel {
+impl ItemAsStr for ChatBotLlmModel {
     fn as_str(&self) -> &'static str {
         self.as_str()
     }
