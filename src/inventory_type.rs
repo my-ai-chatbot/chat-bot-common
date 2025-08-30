@@ -1,4 +1,6 @@
-#[derive(Debug, Clone, Copy)]
+use serde::*;
+
+#[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub enum InventoryType {
     MinaghiAuto,
     DarGlobalRealEstate,
