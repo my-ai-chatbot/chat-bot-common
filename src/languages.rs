@@ -12,11 +12,20 @@ pub enum Language {
 impl Language {
     pub const ALL_LANGUAGES: &[Self] = &[Self::En, Self::Ar];
 
-    pub fn from_str(src: &str) -> Self {
+    pub fn try_from_str(src: &str) -> Option<Self> {
         match src {
-            LANG_AR => Self::Ar,
-            _ => Self::default(),
+            LANG_EN => Some(Self::En),
+            LANG_AR => Some(Self::Ar),
+            _ => None,
         }
+    }
+
+    pub fn from_str(src: &str) -> Self {
+        if let Some(lang) = Self::try_from_str(src) {
+            return lang;
+        }
+
+        Self::default()
     }
 
     pub fn as_str(&self) -> &'static str {
@@ -24,6 +33,10 @@ impl Language {
             Self::En => LANG_EN,
             Self::Ar => LANG_AR,
         }
+    }
+
+    pub fn to_string(&self) -> String {
+        self.as_str().to_string()
     }
 }
 
