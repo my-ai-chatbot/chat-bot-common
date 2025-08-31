@@ -24,6 +24,18 @@ impl InventoryType {
             Self::SalesTeq => SALESTEQ,
         }
     }
+
+    pub fn is_salesteq(&self) -> bool {
+        matches!(self, Self::SalesTeq)
+    }
+
+    pub fn is_minaghi_auto(&self) -> bool {
+        matches!(self, Self::MinaghiAuto)
+    }
+
+    pub fn is_dar_global_real_estate(&self) -> bool {
+        matches!(self, Self::DarGlobalRealEstate)
+    }
 }
 
 pub const ALL: &[InventoryType] = &[
