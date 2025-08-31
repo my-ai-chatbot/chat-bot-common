@@ -5,5 +5,5 @@ pub trait LlmAgentOtherSettings {
     fn get_n(&self) -> Option<i64>;
     fn get_presence_penalty(&self) -> Option<f64>;
     fn get_frequency_penalty(&self) -> Option<f64>;
-    fn disable_think(&self) -> Option<bool>;
+    fn get_disable_think(&self) -> Option<bool>;
 }
