@@ -3,7 +3,7 @@ use std::collections::BTreeMap;
 use crate::inventory_type::InventoryType;
 
 impl InventoryType {
-    pub fn get_en(&self) -> BTreeMap<&'static str, &'static str> {
+    pub fn get_en_translation(&self) -> BTreeMap<&'static str, &'static str> {
         match self {
             InventoryType::MinaghiAuto => fill_minaghi_en(),
             InventoryType::DarGlobalRealEstate => get_dg_en(),
