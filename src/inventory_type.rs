@@ -17,6 +17,10 @@ impl InventoryType {
         }
     }
 
+    pub fn from_str(src: &str) -> Self {
+        Self::try_from_str(src).unwrap_or_default()
+    }
+
     pub fn as_str(&self) -> &'static str {
         match self {
             Self::MinaghiAuto => MINAGHI_AUTO,
@@ -76,5 +80,11 @@ impl crate::ItemAsStr for InventoryType {
 
     fn as_str(&self) -> &'static str {
         self.as_str()
+    }
+}
+
+impl Default for InventoryType {
+    fn default() -> Self {
+        InventoryType::DarGlobalRealEstate
     }
 }
