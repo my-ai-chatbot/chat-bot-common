@@ -22,5 +22,8 @@ pub trait EnumIterator {
 }
 
 pub trait ItemAsStr {
+    fn try_from_str(src: &str) -> Option<Self>
+    where
+        Self: Sized;
     fn as_str(&self) -> &'static str;
 }

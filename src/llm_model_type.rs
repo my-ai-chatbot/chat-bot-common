@@ -59,6 +59,13 @@ impl EnumIterator for ChatBotLlmModel {
 }
 
 impl ItemAsStr for ChatBotLlmModel {
+    fn try_from_str(src: &str) -> Option<Self>
+    where
+        Self: Sized,
+    {
+        Self::try_from_str(src)
+    }
+
     fn as_str(&self) -> &'static str {
         self.as_str()
     }

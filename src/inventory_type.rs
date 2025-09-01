@@ -67,6 +67,13 @@ impl crate::EnumIterator for InventoryType {
 }
 
 impl crate::ItemAsStr for InventoryType {
+    fn try_from_str(src: &str) -> Option<Self>
+    where
+        Self: Sized,
+    {
+        Self::try_from_str(src)
+    }
+
     fn as_str(&self) -> &'static str {
         self.as_str()
     }
