@@ -1,10 +1,12 @@
+use serde::{Deserialize, Serialize};
+
 use crate::{ItemAsStr, languages::Language};
 
 pub const STT_ELEVEN_LABS: &'static str = "11labs";
 pub const STT_KYUTAI: &'static str = "kyutai";
 pub const STT_MUNSIT: &'static str = "munsit";
 
-#[derive(Debug, Clone, Copy, Eq, PartialEq, Ord, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum SttOption {
     ElevenLabs,
     Kyutai,
