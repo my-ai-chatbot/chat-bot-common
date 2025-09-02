@@ -1,4 +1,4 @@
-use crate::languages::Language;
+use crate::{ItemAsStr, languages::Language};
 
 pub const STT_ELEVEN_LABS: &'static str = "11labs";
 pub const STT_KYUTAI: &'static str = "kyutai";
@@ -12,6 +12,16 @@ pub enum SttOption {
 }
 
 impl SttOption {
+    pub const ALL: &[Self] = &[SttOption::ElevenLabs, SttOption::Kyutai, SttOption::Munsit];
+    pub fn try_from_str(src: &str) -> Option<Self> {
+        match src {
+            STT_ELEVEN_LABS => Self::ElevenLabs.into(),
+            STT_KYUTAI => Self::Kyutai.into(),
+            STT_MUNSIT => Self::Munsit.into(),
+            _ => None,
+        }
+    }
+
     pub fn from_str(src: &str, lang: Language) -> Self {
         match src {
             STT_ELEVEN_LABS => Self::ElevenLabs,
@@ -36,11 +46,40 @@ impl Default for SttOption {
     }
 }
 
-pub const ALL: &[&'static str] = &[STT_ELEVEN_LABS, STT_KYUTAI, STT_MUNSIT];
-
 pub fn get_default_by_language(lang_id: &Language) -> SttOption {
     match lang_id {
         Language::En => SttOption::ElevenLabs,
         Language::Ar => SttOption::Munsit,
+    }
+}
+
+impl crate::EnumIterator for SttOption {
+    type TItem = Self;
+
+    fn get_value(&self) -> Self
+    where
+        Self: Sized,
+    {
+        *self
+    }
+
+    fn get_all(&self) -> impl Iterator<Item = Self>
+    where
+        Self: Sized,
+    {
+        Self::ALL.iter().copied()
+    }
+}
+
+impl ItemAsStr for SttOption {
+    fn try_from_str(src: &str) -> Option<Self>
+    where
+        Self: Sized,
+    {
+        Self::try_from_str(src)
+    }
+
+    fn as_str(&self) -> &'static str {
+        self.as_str()
     }
 }
