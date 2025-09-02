@@ -1,5 +1,9 @@
 use serde::*;
 
+pub const MINAGHI_AUTO: &'static str = "minaghi-auto";
+pub const DG_REAL_ESTATE: &'static str = "dg-real-estate";
+pub const SALESTEQ: &'static str = "salesteq";
+
 #[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub enum InventoryType {
     MinaghiAuto,
@@ -8,6 +12,12 @@ pub enum InventoryType {
 }
 
 impl InventoryType {
+    pub const ALL: &[InventoryType] = &[
+        InventoryType::DarGlobalRealEstate,
+        InventoryType::SalesTeq,
+        InventoryType::MinaghiAuto,
+    ];
+
     pub fn try_from_str(src: &str) -> Option<Self> {
         match src {
             MINAGHI_AUTO => Self::MinaghiAuto.into(),
@@ -42,16 +52,6 @@ impl InventoryType {
     }
 }
 
-pub const ALL: &[InventoryType] = &[
-    InventoryType::DarGlobalRealEstate,
-    InventoryType::SalesTeq,
-    InventoryType::MinaghiAuto,
-];
-
-pub const MINAGHI_AUTO: &'static str = "minaghi-auto";
-pub const DG_REAL_ESTATE: &'static str = "dg-real-estate";
-pub const SALESTEQ: &'static str = "salesteq";
-
 impl crate::EnumIterator for InventoryType {
     type TItem = Self;
 
@@ -66,7 +66,7 @@ impl crate::EnumIterator for InventoryType {
     where
         Self: Sized,
     {
-        ALL.into_iter().copied()
+        Self::ALL.into_iter().copied()
     }
 }
 
