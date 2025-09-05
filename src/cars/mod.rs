@@ -3,7 +3,6 @@ use serde::*;
 #[derive(Clone, Serialize, Deserialize)]
 pub struct CarInventoryModel {
     pub id: String,
-    pub car_brand: String,
     pub model: String,
     pub price: f64,
     pub year: i64,
