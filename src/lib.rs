@@ -12,6 +12,7 @@ pub use currency_converter::*;
 mod llm_agent_other_settings;
 pub mod tool_call_resp_models;
 pub use llm_agent_other_settings::*;
+pub mod cars;
 
 pub trait EnumIterator {
     type TItem;
