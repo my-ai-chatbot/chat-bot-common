@@ -25,7 +25,7 @@ pub struct ProjectJsonModel {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub number_of_floors: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub area_sql: Option<String>,
+    pub area_sqm: Option<String>,
 }
 
 impl EntityWithStrKey for ProjectJsonModel {
