@@ -2,15 +2,6 @@ use serde::*;
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct PropertyToolCallResponseJsonModel {
-    pub id: String,
-    pub title: String,
-    pub description: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub rich_description: Option<String>,
-    #[serde(rename = "type")]
-    pub project_type: String,
-    pub amenities: Option<Vec<String>>,
-    pub why_invest: Option<Vec<String>>,
     pub usage_type: String,
     pub unit_type: String,
     pub unit_price: f64,
@@ -45,10 +36,6 @@ pub struct PropertyToolCallResponseJsonModel {
     pub saleable_area_sq_feet: Option<f64>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub property_status: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub project_longitude: Option<f64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub project_latitude: Option<f64>,
 
     pub project_currency: String,
     pub country: String,

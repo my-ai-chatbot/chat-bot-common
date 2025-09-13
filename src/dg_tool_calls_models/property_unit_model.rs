@@ -1,10 +1,8 @@
 use serde::*;
 
-use crate::tool_call_resp_models::*;
-
-use super::*;
 #[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct PropertyUnitJsonModel {
+    pub project_id: String,
     pub usage_type: String,
     pub unit_type: String,
     pub unit_price: f64,
@@ -62,10 +60,9 @@ pub struct PropertyUnitJsonModel {
 
     #[serde(skip_serializing_if = "Option::is_none")]
     pub floor: Option<String>,
-
-    pub project_id: String,
 }
 
+/*
 impl PropertyUnitJsonModel {
     pub fn to_result_model(&self, project: &ProjectJsonModel) -> PropertyToolCallResponseJsonModel {
         PropertyToolCallResponseJsonModel {
@@ -135,3 +132,4 @@ impl PropertyUnitJsonModel {
         self.country == country_code
     }
 }
+ */
