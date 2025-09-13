@@ -62,44 +62,44 @@ pub struct PropertyUnitJsonModel {
     pub floor: Option<String>,
 }
 
-/*
 impl PropertyUnitJsonModel {
-    pub fn to_result_model(&self, project: &ProjectJsonModel) -> PropertyToolCallResponseJsonModel {
-        PropertyToolCallResponseJsonModel {
-            id: project.id.clone(),
-            title: project.title.clone(),
-            rich_description: project.rich_description.clone(),
-            description: project.description.clone(),
-            project_type: project.project_type.clone(),
-            amenities: project.amenities.clone(),
-            usage_type: self.usage_type.clone(),
-            unit_type: self.unit_type.clone(),
-            unit_price: self.unit_price.clone(),
-            unit_price_in_usd: self.unit_price_in_usd.clone(),
-            expected_completion_date: self.expected_completion_date.clone(),
-            start_date: self.start_date.clone(),
-            apartment_type: self.apartment_type.clone(),
-            area_sq_meters: self.area_sq_meters.clone(),
-            area_sq_feet: self.area_sq_feet.clone(),
-            balcony_area_sq_meters: self.balcony_area_sq_meters.clone(),
-            balcony_area_sq_feet: self.balcony_area_sq_feet.clone(),
-            saleable_area_sq_meeters: self.saleable_area_sq_meeters.clone(),
-            saleable_area_sq_feet: self.saleable_area_sq_feet.clone(),
-            property_status: self.property_status.clone(),
-            project_longitude: self.project_longitude.clone(),
-            project_latitude: self.project_latitude.clone(),
-            project_currency: self.project_currency.clone(),
-            country: self.country.clone(),
-            city: self.city.clone(),
-            parking_slots: self.parking_slots.clone(),
-            no_of_bedrooms: self.no_of_bedrooms.clone(),
-            no_of_bathrooms: self.no_of_bathrooms.clone(),
-            unit_category: self.unit_category.clone(),
-            floor: self.floor.clone(),
-            why_invest: project.why_invest.clone(),
+    /*
+        pub fn to_result_model(&self, project: &ProjectJsonModel) -> PropertyToolCallResponseJsonModel {
+            PropertyToolCallResponseJsonModel {
+                id: project.id.clone(),
+                title: project.title.clone(),
+                rich_description: project.rich_description.clone(),
+                description: project.description.clone(),
+                project_type: project.project_type.clone(),
+                amenities: project.amenities.clone(),
+                usage_type: self.usage_type.clone(),
+                unit_type: self.unit_type.clone(),
+                unit_price: self.unit_price.clone(),
+                unit_price_in_usd: self.unit_price_in_usd.clone(),
+                expected_completion_date: self.expected_completion_date.clone(),
+                start_date: self.start_date.clone(),
+                apartment_type: self.apartment_type.clone(),
+                area_sq_meters: self.area_sq_meters.clone(),
+                area_sq_feet: self.area_sq_feet.clone(),
+                balcony_area_sq_meters: self.balcony_area_sq_meters.clone(),
+                balcony_area_sq_feet: self.balcony_area_sq_feet.clone(),
+                saleable_area_sq_meeters: self.saleable_area_sq_meeters.clone(),
+                saleable_area_sq_feet: self.saleable_area_sq_feet.clone(),
+                property_status: self.property_status.clone(),
+                project_longitude: self.project_longitude.clone(),
+                project_latitude: self.project_latitude.clone(),
+                project_currency: self.project_currency.clone(),
+                country: self.country.clone(),
+                city: self.city.clone(),
+                parking_slots: self.parking_slots.clone(),
+                no_of_bedrooms: self.no_of_bedrooms.clone(),
+                no_of_bathrooms: self.no_of_bathrooms.clone(),
+                unit_category: self.unit_category.clone(),
+                floor: self.floor.clone(),
+                why_invest: project.why_invest.clone(),
+            }
         }
-    }
-
+    */
     pub fn filter_by_price(&self, min_price_usd: Option<f64>, max_price_usd: Option<f64>) -> bool {
         if self.unit_price_in_usd.is_none() {
             println!(
@@ -132,4 +132,3 @@ impl PropertyUnitJsonModel {
         self.country == country_code
     }
 }
- */
