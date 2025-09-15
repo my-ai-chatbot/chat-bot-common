@@ -38,6 +38,10 @@ impl ChatBotLlmModel {
             Self::Qwen3_30BA3n => QWEN3_30B_A3B,
         }
     }
+
+    pub fn to_string(&self) -> String {
+        self.as_str().to_string()
+    }
 }
 
 impl EnumIterator for ChatBotLlmModel {
