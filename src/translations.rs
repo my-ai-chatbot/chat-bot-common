@@ -69,6 +69,8 @@ fn get_dg_en() -> BTreeMap<&'static str, &'static str> {
     result.insert("choose_mode_text_btn", "Text chat");
     result.insert("header_voice_chat_btn_title", "Voice chat");
 
+    result.insert("input_placeholder", "Message");
+
     result
 }
 
