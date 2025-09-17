@@ -15,39 +15,46 @@ impl InventoryType {
 fn get_dg_en() -> BTreeMap<&'static str, &'static str> {
     let mut result: BTreeMap<&'static str, &'static str> = BTreeMap::new();
 
-    result.insert("property_shortcut_header_first_line", "Welcome");
-    result.insert("property_shortcut_header_second_line", "How can we help ?");
-    result.insert("property_shortcut_first_card_subtitle", "View");
-    result.insert("property_shortcut_first_card_title", "Projects");
+    result.insert("input_placeholder", "Message");
+    result.insert("btn_send", "Send");
+    result.insert("text_chat_btn_title", "Text chat");
+    result.insert("voice_chat_btn_title", "Voice chat");
+    result.insert("header_voice_chat_btn_title", "Voice chat");
+    result.insert("box_shortcut_header_first_line", "Welcome");
+    result.insert("box_shortcut_header_second_line", "How can we help?");
+    result.insert("box_shortcut_first_card_subtitle", "View");
+    result.insert("box_shortcut_first_card_title", "Projects");
     result.insert(
-        "property_shortcut_first_card_prompt",
+        "box_shortcut_first_card_prompt",
         "Show the latest project that was launched by DarGlobal",
     );
-    result.insert("property_shortcut_second_card_title", "Learn about Buying");
+    result.insert("box_shortcut_second_card_title", "Learn about Buying");
     result.insert(
-        "property_shortcut_second_card_prompt",
-        "Can you walk me briefly through the process of buying a property with DarGlobal ?",
+        "box_shortcut_second_card_prompt",
+        "Can you walk me briefly through the process of buying a property with DarGlobal?",
     );
+    result.insert("box_shortcut_third_card_title", "Schedule a Consultation");
+    result.insert("box_shortcut_third_card_prompt", "Return options for scheduling an efficient virtual tour or consultation, focusing on specific Dar Global projects and user availability via text-based scheduling.");
     result.insert(
-        "property_shortcut_third_card_title",
-        "Schedule a Consultation",
-    );
-    result.insert(
-        "property_shortcut_third_card_prompt",
-        "Return options for scheduling an efficient virtual tour or consultation, focusing on    specific Dar Global projects and user availability via text - based scheduling.",
-    );
-    result.insert(
-        "property_shortcut_socials_card_title",
+        "box_shortcut_socials_card_title",
         "If you prefer you can continue the conversation in",
     );
-    result.insert("property_brochure_download_title", "Download");
-    result.insert("property_office_address_title", "Address");
-    result.insert("property_office_phone_title", "Phone");
-    result.insert("property_feedback_header_title", "Appointment details");
-    result.insert("property_feedback_status", "Confirmed");
-    result.insert("property_feedback_email", "Email");
-    result.insert("property_feedback_date", "Date");
-    result.insert("property_feedback_time", "Time");
+    result.insert("card_brochure_download_title", "Download");
+    result.insert("card_office_address_title", "Address");
+    result.insert("card_office_phone_title", "Phone");
+    result.insert("card_feedback_header_title", "Appointment details");
+    result.insert("card_feedback_status", "Confirmed");
+    result.insert("card_feedback_email", "Email");
+    result.insert("card_feedback_date", "Date");
+    result.insert("card_feedback_time", "Time");
+    result.insert("auto_finance_amount", "");
+    result.insert("auto_finance_balloon", "");
+    result.insert("auto_finance_interest", "");
+    result.insert("auto_finance_term", "");
+    result.insert("auto_showroom_city", "");
+    result.insert("auto_showroom_district", "");
+    result.insert("auto_showroom_postal_code", "");
+    result.insert("auto_showroom_street", "");
     result.insert(
         "terms_and_conditions_by_choosing",
         "By choosing the mode you agree to our",
@@ -56,6 +63,8 @@ fn get_dg_en() -> BTreeMap<&'static str, &'static str> {
     result.insert("terms_and_conditions_and_confirm", "and confirm that you");
     result.insert("terms_and_conditions_have_read", "have read our");
     result.insert("terms_and_conditions_privacy_policy", "Privacy Policy");
+    result.insert("terms_link", "Terms and Conditions");
+    result.insert("terms_title", "By choosing the mode you agree with our");
     result.insert("terms_content", "Terms of Use content here...");
     result.insert("privacy_content", "Privacy Policy content here...");
     result.insert("promo_title", "DarGlobal AI");
@@ -67,9 +76,6 @@ fn get_dg_en() -> BTreeMap<&'static str, &'static str> {
     result.insert("choose_mode_title", "Choose mode");
     result.insert("choose_mode_voice_btn", "Voice chat");
     result.insert("choose_mode_text_btn", "Text chat");
-    result.insert("header_voice_chat_btn_title", "Voice chat");
-
-    result.insert("input_placeholder", "Message");
 
     result
 }
