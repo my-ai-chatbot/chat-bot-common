@@ -38,7 +38,7 @@ impl RequestMetadata {
             }
 
             if ctx.starts_with(BROWSER_PREFIX) {
-                browser = Browser::from_user_agent(&ctx[BROWSER_PREFIX.len()..])
+                browser = Browser::from_str(&ctx[BROWSER_PREFIX.len()..])
             }
 
             if ctx.starts_with(TENANT_PREFIX) {
