@@ -1,5 +1,4 @@
 pub mod audit_log;
-pub mod browsers;
 pub mod currency_converter;
 pub mod dg_tool_calls_models;
 pub mod inventory_type;

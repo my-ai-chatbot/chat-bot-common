@@ -1,6 +1,7 @@
+use rust_common::user_agent::Browser;
 use serde::*;
 
-use crate::{browsers::*, languages::*};
+use crate::languages::*;
 
 pub const LANG_PREFIX: &'static str = "lang:";
 pub const BROWSER_PREFIX: &'static str = "browser:";
@@ -13,7 +14,7 @@ pub const COUNTRY_BY_IP_PREFIX: &'static str = "ip-country:";
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RequestMetadata {
     pub lang: Language,
-    pub browser: Browser,
+    pub browser: Option<Browser>,
     pub tenant: String,
     pub session_id: String,
     pub time_zone: String,
@@ -24,7 +25,7 @@ pub struct RequestMetadata {
 impl RequestMetadata {
     pub fn new<'s>(metadata: impl Iterator<Item = &'s str>) -> Self {
         let mut lang = Language::En;
-        let mut browser = Browser::Unknown;
+        let mut browser = None;
         let mut tenant = None;
         let mut session = None;
         let mut time_zone = None;
@@ -37,7 +38,7 @@ impl RequestMetadata {
             }
 
             if ctx.starts_with(BROWSER_PREFIX) {
-                browser = Browser::from_str(&ctx[BROWSER_PREFIX.len()..])
+                browser = Browser::from_user_agent(&ctx[BROWSER_PREFIX.len()..])
             }
 
             if ctx.starts_with(TENANT_PREFIX) {
@@ -112,8 +113,8 @@ impl RequestMetadata {
         result.push(format!("{}{}", TIMEZONE_PREFIX, self.time_zone));
         result.push(format!("{}{}", TIME_OFFSET_PREFIX, self.time_offset));
 
-        if let Some(browser) = self.browser.as_str() {
-            result.push(format!("{}{}", BROWSER_PREFIX, browser));
+        if let Some(browser) = self.browser {
+            result.push(format!("{}{}", BROWSER_PREFIX, browser.as_str()));
         }
 
         result.push(format!(
