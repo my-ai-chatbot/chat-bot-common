@@ -35,6 +35,17 @@ impl ChatBotLlmModel {
         Self::Qwen3_30BA3n,
     ];
 
+    pub fn as_generic_llm_type(&self) -> ChatBotLlmGenericType {
+        match self {
+            ChatBotLlmModel::Gpt4o => ChatBotLlmGenericType::Gpt4,
+            ChatBotLlmModel::Gpt4oMini => ChatBotLlmGenericType::Gpt4,
+            ChatBotLlmModel::Gpt5 => ChatBotLlmGenericType::Gpt5,
+            ChatBotLlmModel::Gpt5Mini => ChatBotLlmGenericType::Gpt5,
+            ChatBotLlmModel::Gpt5Nano => ChatBotLlmGenericType::Gpt5,
+            ChatBotLlmModel::Qwen3_30BA3n => ChatBotLlmGenericType::Qwen,
+        }
+    }
+
     pub fn try_from_str(src: &str) -> Option<Self> {
         match src {
             GPT_4O => Some(Self::Gpt4o),
@@ -92,4 +103,11 @@ impl ItemAsStr for ChatBotLlmModel {
     fn as_str(&self) -> &'static str {
         self.as_str()
     }
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+pub enum ChatBotLlmGenericType {
+    Gpt4,
+    Gpt5,
+    Qwen,
 }
