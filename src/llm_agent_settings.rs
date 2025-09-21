@@ -8,7 +8,7 @@ pub trait LlmAgentGenericSettings {
     fn get_frequency_penalty(&self) -> Option<f64>;
     fn get_disable_think(&self) -> Option<bool>;
     fn get_reasoning_effort(&self) -> Option<Gpt5ReasoningEffort>;
-    fn get_verbosity(&self) -> Option<Gpt5VerbosityEffort>;
+    fn get_verbosity(&self) -> Option<Gpt5Verbosity>;
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, Copy, PartialEq, Eq)]
@@ -41,7 +41,7 @@ impl Gpt5ReasoningEffort {
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, Copy, PartialEq, Eq)]
-pub enum Gpt5VerbosityEffort {
+pub enum Gpt5Verbosity {
     #[serde(rename = "hight")]
     Hight,
     #[serde(rename = "medium")]
@@ -50,7 +50,7 @@ pub enum Gpt5VerbosityEffort {
     Low,
 }
 
-impl Gpt5VerbosityEffort {
+impl Gpt5Verbosity {
     pub fn from_str(src: &str) -> Option<Self> {
         match src {
             "high" => Some(Self::Hight),
