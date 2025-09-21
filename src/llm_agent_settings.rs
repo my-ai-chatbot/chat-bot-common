@@ -21,6 +21,25 @@ pub enum Gpt5ReasoningEffort {
     Low,
 }
 
+impl Gpt5ReasoningEffort {
+    pub fn from_str(src: &str) -> Option<Self> {
+        match src {
+            "high" => Some(Self::Hight),
+            "minimal" => Some(Self::Minimal),
+            "low" => Some(Self::Low),
+            _ => None,
+        }
+    }
+
+    pub fn as_str(&self) -> &'static str {
+        match self {
+            Self::Hight => "high",
+            Self::Minimal => "minimal",
+            Self::Low => "low",
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, Clone, Copy)]
 pub enum Gpt5VerbosityEffort {
     #[serde(rename = "hight")]
@@ -29,4 +48,23 @@ pub enum Gpt5VerbosityEffort {
     Medium,
     #[serde(rename = "low")]
     Low,
+}
+
+impl Gpt5VerbosityEffort {
+    pub fn from_str(src: &str) -> Option<Self> {
+        match src {
+            "high" => Some(Self::Hight),
+            "medium" => Some(Self::Medium),
+            "low" => Some(Self::Low),
+            _ => None,
+        }
+    }
+
+    pub fn as_str(&self) -> &'static str {
+        match self {
+            Self::Hight => "high",
+            Self::Medium => "medium",
+            Self::Low => "low",
+        }
+    }
 }
