@@ -8,9 +8,9 @@ pub mod request_metadata;
 pub mod stt_options;
 pub mod translations;
 pub use currency_converter::*;
-mod llm_agent_other_settings;
+mod llm_agent_settings;
 pub mod tool_call_resp_models;
-pub use llm_agent_other_settings::*;
+pub use llm_agent_settings::*;
 pub mod cars;
 
 pub trait EnumIterator {
