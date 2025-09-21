@@ -11,7 +11,7 @@ pub trait LlmAgentGenericSettings {
     fn get_verbosity(&self) -> Option<Gpt5VerbosityEffort>;
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone, Copy)]
+#[derive(Debug, Serialize, Deserialize, Clone, Copy, PartialEq, Eq)]
 pub enum Gpt5ReasoningEffort {
     #[serde(rename = "hight")]
     Hight,
@@ -40,7 +40,7 @@ impl Gpt5ReasoningEffort {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone, Copy)]
+#[derive(Debug, Serialize, Deserialize, Clone, Copy, PartialEq, Eq)]
 pub enum Gpt5VerbosityEffort {
     #[serde(rename = "hight")]
     Hight,
