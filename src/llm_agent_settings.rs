@@ -6,7 +6,7 @@ pub trait LlmAgentGenericSettings {
     fn get_n(&self) -> Option<i64>;
     fn get_presence_penalty(&self) -> Option<f64>;
     fn get_frequency_penalty(&self) -> Option<f64>;
-    fn get_disable_think(&self) -> bool;
+    fn get_think(&self) -> bool;
     fn get_reasoning_effort(&self) -> Option<Gpt5ReasoningEffort>;
     fn get_verbosity(&self) -> Option<Gpt5Verbosity>;
 }
