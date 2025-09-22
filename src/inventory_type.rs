@@ -52,37 +52,6 @@ impl InventoryType {
     }
 }
 
-impl crate::EnumIterator for InventoryType {
-    type TItem = Self;
-
-    fn get_value(&self) -> Self
-    where
-        Self: Sized,
-    {
-        *self
-    }
-
-    fn get_all(&self) -> impl Iterator<Item = Self>
-    where
-        Self: Sized,
-    {
-        Self::ALL.into_iter().copied()
-    }
-}
-
-impl crate::ItemAsStr for InventoryType {
-    fn try_from_str(src: &str) -> Option<Self>
-    where
-        Self: Sized,
-    {
-        Self::try_from_str(src)
-    }
-
-    fn as_str(&self) -> &'static str {
-        self.as_str()
-    }
-}
-
 impl Default for InventoryType {
     fn default() -> Self {
         InventoryType::DarGlobalRealEstate

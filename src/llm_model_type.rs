@@ -1,7 +1,5 @@
 use serde::*;
 
-use crate::*;
-
 pub const GPT_4O: &'static str = "gpt-4o";
 pub const GPT_4O_MINI: &'static str = "gpt-4o-mini";
 pub const GPT_5: &'static str = "gpt-5";
@@ -71,37 +69,6 @@ impl ChatBotLlmModel {
 
     pub fn to_string(&self) -> String {
         self.as_str().to_string()
-    }
-}
-
-impl EnumIterator for ChatBotLlmModel {
-    type TItem = Self;
-
-    fn get_value(&self) -> Self
-    where
-        Self: Sized,
-    {
-        *self
-    }
-
-    fn get_all(&self) -> impl Iterator<Item = Self>
-    where
-        Self: Sized,
-    {
-        Self::ALL.iter().copied()
-    }
-}
-
-impl ItemAsStr for ChatBotLlmModel {
-    fn try_from_str(src: &str) -> Option<Self>
-    where
-        Self: Sized,
-    {
-        Self::try_from_str(src)
-    }
-
-    fn as_str(&self) -> &'static str {
-        self.as_str()
     }
 }
 

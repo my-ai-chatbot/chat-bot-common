@@ -45,34 +45,3 @@ impl Default for Language {
         Self::En
     }
 }
-
-impl crate::EnumIterator for Language {
-    type TItem = Self;
-
-    fn get_value(&self) -> Self
-    where
-        Self: Sized,
-    {
-        *self
-    }
-
-    fn get_all(&self) -> impl Iterator<Item = Self>
-    where
-        Self: Sized,
-    {
-        Self::ALL_LANGUAGES.iter().copied()
-    }
-}
-
-impl crate::ItemAsStr for Language {
-    fn try_from_str(src: &str) -> Option<Self>
-    where
-        Self: Sized,
-    {
-        Self::try_from_str(src)
-    }
-
-    fn as_str(&self) -> &'static str {
-        self.as_str()
-    }
-}

@@ -12,18 +12,3 @@ mod llm_agent_settings;
 pub mod tool_call_resp_models;
 pub use llm_agent_settings::*;
 pub mod cars;
-
-pub trait EnumIterator {
-    type TItem;
-
-    fn get_value(&self) -> Self::TItem;
-
-    fn get_all(&self) -> impl Iterator<Item = Self::TItem>;
-}
-
-pub trait ItemAsStr {
-    fn try_from_str(src: &str) -> Option<Self>
-    where
-        Self: Sized;
-    fn as_str(&self) -> &'static str;
-}
