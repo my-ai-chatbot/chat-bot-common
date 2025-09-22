@@ -22,6 +22,8 @@ pub enum Gpt5ReasoningEffort {
 }
 
 impl Gpt5ReasoningEffort {
+    pub const ALL: &'static [Self] = &[Self::Hight, Self::Low, Self::Minimal];
+
     pub fn try_from_str(src: &str) -> Option<Self> {
         match src {
             "high" => Some(Self::Hight),
@@ -55,6 +57,7 @@ pub enum Gpt5Verbosity {
 }
 
 impl Gpt5Verbosity {
+    pub const ALL: &'static [Self] = &[Self::Hight, Self::Medium, Self::Low];
     pub fn try_from_str(src: &str) -> Option<Self> {
         match src {
             "high" => Some(Self::Hight),
