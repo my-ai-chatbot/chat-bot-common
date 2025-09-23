@@ -141,6 +141,7 @@ fn fill_minaghi_en() -> BTreeMap<&'static str, &'static str> {
     result.insert("choose_mode_title", "Choose mode");
     result.insert("choose_mode_voice_btn", "Voice chat");
     result.insert("choose_mode_text_btn", "Text chat");
+    result.insert("car_offer_label", "Most Popular");
 
     result
 }
