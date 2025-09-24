@@ -143,5 +143,15 @@ fn fill_minaghi_en() -> BTreeMap<&'static str, &'static str> {
     result.insert("choose_mode_text_btn", "Text chat");
     result.insert("car_offer_label", "Most Popular");
 
+    result.insert("card_feedback_header_title", "Appointment details");
+    result.insert("card_feedback_status_success", "Confirmed");
+    result.insert("card_feedback_status_canceled", "Canceled");
+
+    result.insert("otp_resend_message", "We sent a new code over SMS to");
+    result.insert(
+        "otp_error_message",
+        "This code doesn't look right. Please try again.",
+    );
+
     result
 }
