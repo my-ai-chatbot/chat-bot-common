@@ -153,5 +153,16 @@ fn fill_minaghi_en() -> BTreeMap<&'static str, &'static str> {
         "This code doesn't look right. Please try again.",
     );
 
+    result.insert("card_feedback_add_to_calendar", "Add to Calendar");
+
+    result.insert(
+        "otp_error_message",
+        "This code doesn't look right. Please try again.",
+    );
+
+    result.insert("otp_sent_message", "Enter the code I sent over SMS to");
+
+    result.insert("otp_resend_message", "We sent a new code over SMS to");
+
     result
 }
