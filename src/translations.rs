@@ -153,7 +153,7 @@ fn fill_minaghi_en() -> BTreeMap<&'static str, &'static str> {
         "This code doesn't look right. Please try again.",
     );
 
-    result.insert("card_feedback_add_to_calendar", "Add to Calendar");
+    result.insert("card_feedback_add_to_calendar", "Add to calendar");
 
     result.insert(
         "otp_error_message",
@@ -161,8 +161,40 @@ fn fill_minaghi_en() -> BTreeMap<&'static str, &'static str> {
     );
 
     result.insert("otp_sent_message", "Enter the code I sent over SMS to");
+    result.insert(
+        "otp_header_description",
+        "Enter the code I sent over SMS to",
+    );
 
-    result.insert("otp_resend_message", "We sent a new code over SMS to");
+    result.insert("otp_resend_message", "I sent a new code over SMS to ");
+
+    result.insert(
+        "card_feedback_text_under_card",
+        "What else can I help with?",
+    );
+
+    result.insert("otp_header_title", "Phone verification");
+
+    result.insert(
+        "otp_error_message",
+        "This code doesn't look right. Please try again.",
+    );
+
+    result.insert("otp_resend_button", "Resend code");
+
+    result.insert("otp_update_phone_button", "Update phone");
+
+    result.insert("otp_cancel_button", "Cancel");
+
+    result.insert(
+        "otp_success_message_in_chat",
+        "Great! It's confirmed, I also sent you an SMS with this information",
+    );
+
+    result.insert(
+        "otp_auth_success_in_chat_label",
+        "You are now authenticated",
+    );
 
     result
 }
