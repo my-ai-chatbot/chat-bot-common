@@ -4,6 +4,12 @@ use serde::*;
 pub const AUDIT_LOG_CHAT_EVENT: &'static str = "chat-event";
 pub const AI_SUMMARY_EVENT: &'static str = "ai-summary";
 
+// Attempt of sending sms to sms provider
+pub const SEND_SMS_EVENT: &'static str = "send-sms";
+
+// Client trying to verify phone by sending code
+pub const PHONE_VERIFICATION_ATTEMPT: &'static str = "phone-verification-attempt";
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Default, Clone)]
 pub struct AuditLogChatModel {
     pub client_question: String,
