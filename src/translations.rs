@@ -155,18 +155,11 @@ fn fill_minaghi_en() -> BTreeMap<&'static str, &'static str> {
 
     result.insert("card_feedback_add_to_calendar", "Add to calendar");
 
-    result.insert(
-        "otp_error_message",
-        "This code doesn't look right. Please try again.",
-    );
-
     result.insert("otp_sent_message", "Enter the code I sent over SMS to");
     result.insert(
         "otp_header_description",
         "Enter the code I sent over SMS to",
     );
-
-    result.insert("otp_resend_message", "I sent a new code over SMS to ");
 
     result.insert(
         "card_feedback_text_under_card",
@@ -174,11 +167,6 @@ fn fill_minaghi_en() -> BTreeMap<&'static str, &'static str> {
     );
 
     result.insert("otp_header_title", "Phone verification");
-
-    result.insert(
-        "otp_error_message",
-        "This code doesn't look right. Please try again.",
-    );
 
     result.insert("otp_resend_button", "Resend code");
 
@@ -194,6 +182,16 @@ fn fill_minaghi_en() -> BTreeMap<&'static str, &'static str> {
     result.insert(
         "otp_auth_success_in_chat_label",
         "You are now authenticated",
+    );
+
+    result.insert("car_offer_price_month", "month");
+    result.insert("card_car_sales_location_address_title", "Address");
+    result.insert("card_car_sales_location_phone_title", "Phone number");
+    result.insert("card_car_sales_location_sales_phone_title", "Sales");
+    result.insert("card_car_sales_location_service_phone_title", "Service");
+    result.insert(
+        "card_car_sales_location_opening_hours_title",
+        "Opening hours",
     );
 
     result
