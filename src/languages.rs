@@ -12,6 +12,13 @@ pub enum Language {
 impl Language {
     pub const ALL_LANGUAGES: &'static [Self] = &[Self::En, Self::Ar];
 
+    pub fn is_english(&self) -> bool {
+        match self {
+            Self::En => true,
+            _ => false,
+        }
+    }
+
     pub fn try_from_str(src: &str) -> Option<Self> {
         match src {
             LANG_EN => Some(Self::En),
