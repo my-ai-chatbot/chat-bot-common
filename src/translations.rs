@@ -132,11 +132,7 @@ fn fill_minaghi_en() -> BTreeMap<&'static str, &'static str> {
     result.insert("terms_title", "By choosing the mode you agree with our");
     result.insert("terms_content", "Terms of Use content here...");
     result.insert("privacy_content", "Privacy Policy content here...");
-    result.insert("promo_title", "DarGlobal AI");
-    result.insert(
-        "promo_description",
-        "Your personal assistant for the world's most exclusive real estate",
-    );
+
     result.insert("promo_button_text", "Get started");
     result.insert("choose_mode_title", "Choose mode");
     result.insert("choose_mode_voice_btn", "Voice chat");
