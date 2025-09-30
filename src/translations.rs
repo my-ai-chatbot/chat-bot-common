@@ -1,14 +1,22 @@
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, HashMap};
 
 use crate::inventory_type::InventoryType;
 
+lazy_static::lazy_static! {
+    pub static ref TRANSLATIONS: HashMap<InventoryType, BTreeMap<&'static str, &'static str>> = {
+        let mut result = HashMap::new();
+
+        result.insert(InventoryType::DarGlobalRealEstate, get_dg_en());
+        result.insert(InventoryType::MinaghiAuto, fill_minaghi_en());
+        result.insert(InventoryType::SalesTeq, get_dg_en());
+
+        result
+    };
+}
+
 impl InventoryType {
-    pub fn get_en_translation(&self) -> BTreeMap<&'static str, &'static str> {
-        match self {
-            InventoryType::MinaghiAuto => fill_minaghi_en(),
-            InventoryType::DarGlobalRealEstate => get_dg_en(),
-            InventoryType::SalesTeq => get_dg_en(),
-        }
+    pub fn get_en_translation(&self) -> &'static BTreeMap<&'static str, &'static str> {
+        return TRANSLATIONS.get(self).unwrap();
     }
 }
 
