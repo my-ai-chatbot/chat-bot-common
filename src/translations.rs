@@ -190,7 +190,12 @@ fn fill_minaghi_en() -> BTreeMap<&'static str, &'static str> {
         "Opening hours",
     );
 
-    result.insert(".sms_verification", "MINI verification code: ${code}");
+    result.insert(".sms_verification", "MINI verification code: ${CODE}");
+
+    result.insert(
+        ".sms_appointment_confirmation",
+        "We will call you ${DATE} at ${TIME} to further discuss you options. Thank you!",
+    );
 
     result
 }
