@@ -65,6 +65,17 @@ impl ObjectId {
         self.0.as_str()
     }
 
+    pub fn eq_with_opt(&self, other: Option<&ObjectId>) -> bool {
+        match other {
+            Some(other) => self.eq_with(other),
+            None => false,
+        }
+    }
+
+    pub fn eq_with(&self, other: &ObjectId) -> bool {
+        self.0 == other.0
+    }
+
     pub fn len(&self) -> usize {
         self.0.len()
     }
