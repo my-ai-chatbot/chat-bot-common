@@ -105,12 +105,6 @@ impl<TObjectIdValidator: ValueValidator> Into<String> for ObjectId<TObjectIdVali
     }
 }
 
-impl<TObjectIdValidator: ValueValidator> Into<ObjectId<TObjectIdValidator>> for String {
-    fn into(self) -> ObjectId<TObjectIdValidator> {
-        ObjectId::new(self)
-    }
-}
-
 impl<TObjectIdValidator: ValueValidator> Into<ObjectId<TObjectIdValidator>> for &'_ str {
     fn into(self) -> ObjectId<TObjectIdValidator> {
         ObjectId::new(self.to_string())
@@ -120,6 +114,12 @@ impl<TObjectIdValidator: ValueValidator> Into<ObjectId<TObjectIdValidator>> for 
 impl<TObjectIdValidator: ValueValidator> Into<ObjectId<TObjectIdValidator>> for &'_ String {
     fn into(self) -> ObjectId<TObjectIdValidator> {
         ObjectId::new(self.to_string())
+    }
+}
+
+impl<TObjectIdValidator: ValueValidator> From<String> for ObjectId<TObjectIdValidator> {
+    fn from(value: String) -> Self {
+        Self::new(value)
     }
 }
 
