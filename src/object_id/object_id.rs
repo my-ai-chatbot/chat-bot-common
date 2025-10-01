@@ -123,6 +123,12 @@ impl<TObjectIdValidator: ValueValidator> From<String> for ObjectId<TObjectIdVali
     }
 }
 
+impl<TObjectIdValidator: ValueValidator> ValueValidator for ObjectId<TObjectIdValidator> {
+    fn validate_value(src: &str) -> Option<bool> {
+        TObjectIdValidator::validate_value(src)
+    }
+}
+
 #[cfg(test)]
 mod test {
     use serde::*;
