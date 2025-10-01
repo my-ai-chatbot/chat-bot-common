@@ -3,27 +3,10 @@ pub fn validate_generic_object_id(src: &str) -> Option<bool> {
         return None;
     }
 
-    let mut first = ' ';
-    let mut last = ' ';
-
-    for (i, c) in src.chars().enumerate() {
+    for c in src.chars() {
         if !is_ok_char(c) {
             return Some(false);
         }
-
-        if i == 0 {
-            first = c;
-        }
-
-        last = c;
-    }
-
-    if first == ' ' {
-        return Some(false);
-    }
-
-    if last == ' ' {
-        return Some(false);
     }
 
     Some(true)
@@ -38,11 +21,11 @@ pub fn is_ok_char(c: char) -> bool {
         return true;
     }
 
-    if c == ' ' || c == '-' {
+    if c == '-' {
         return true;
     }
 
-    return c as u8 >= 32;
+    return false;
 }
 
 pub fn generic_id_would_be_ok(value: &str) -> bool {
