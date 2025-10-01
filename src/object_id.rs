@@ -10,8 +10,8 @@ impl ObjectId {
         Self(value)
     }
 
-    pub fn is_ok(value: &str) -> bool {
-        for c in value.chars() {
+    pub fn is_ok(&self) -> bool {
+        for c in self.0.chars() {
             if !is_ok_char(c) {
                 return false;
             }
@@ -21,7 +21,7 @@ impl ObjectId {
     }
 
     pub fn fix_me(&mut self) {
-        if Self::is_ok(&self.0) {
+        if id_would_be_ok(&self.0) {
             return;
         }
 
@@ -37,7 +37,7 @@ impl ObjectId {
     }
 
     pub fn from_str(value: &str) -> Option<Self> {
-        if Self::is_ok(value) {
+        if id_would_be_ok(value) {
             return Some(Self(value.to_string()));
         }
         None
@@ -48,6 +48,21 @@ impl ObjectId {
     }
 }
 
+impl Default for ObjectId {
+    fn default() -> Self {
+        Self(Default::default())
+    }
+}
+
+fn id_would_be_ok(value: &str) -> bool {
+    for c in value.chars() {
+        if !is_ok_char(c) {
+            return false;
+        }
+    }
+
+    true
+}
 fn is_ok_char(c: char) -> bool {
     if c.is_ascii_alphabetic() {
         return true;
