@@ -3,11 +3,8 @@ use std::{
     marker::PhantomData,
 };
 
+use super::*;
 use serde::*;
-
-pub trait ValueValidator {
-    fn validate_value(src: &str) -> Option<bool>;
-}
 
 #[derive(Clone, Serialize, Deserialize, PartialEq, Eq, Hash, PartialOrd, Ord)]
 #[serde(transparent)]
