@@ -12,18 +12,28 @@ impl ObjectId {
 
     pub fn is_ok(value: &str) -> bool {
         for c in value.chars() {
-            let b = c as u8;
-            if b < 32 {
-                return false;
-            }
-
-            if c.is_ascii_alphabetic() || c.is_ascii_digit() || c == ' ' || c == '-' {
-            } else {
+            if !is_ok_char(c) {
                 return false;
             }
         }
 
         true
+    }
+
+    pub fn fix_me(&mut self) {
+        if Self::is_ok(&self.0) {
+            return;
+        }
+
+        let mut result = String::new();
+
+        for c in self.0.chars() {
+            if is_ok_char(c) {
+                result.push(c);
+            }
+        }
+
+        self.0 = result
     }
 
     pub fn from_str(value: &str) -> Option<Self> {
@@ -36,6 +46,22 @@ impl ObjectId {
     pub fn as_str(&self) -> &str {
         self.0.as_str()
     }
+}
+
+fn is_ok_char(c: char) -> bool {
+    if c.is_ascii_alphabetic() {
+        return true;
+    }
+
+    if c.is_ascii_digit() {
+        return true;
+    }
+
+    if c == ' ' || c == '-' {
+        return true;
+    }
+
+    return c as u8 >= 32;
 }
 
 impl Display for ObjectId {
