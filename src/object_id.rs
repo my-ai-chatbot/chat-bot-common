@@ -64,6 +64,10 @@ impl ObjectId {
     pub fn as_str(&self) -> &str {
         self.0.as_str()
     }
+
+    pub fn len(&self) -> usize {
+        self.0.len()
+    }
 }
 
 impl Default for ObjectId {
