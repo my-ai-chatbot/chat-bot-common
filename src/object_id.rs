@@ -10,14 +10,35 @@ impl ObjectId {
         Self(value)
     }
 
-    pub fn is_ok(&self) -> bool {
-        for c in self.0.chars() {
-            if !is_ok_char(c) {
-                return false;
-            }
+    pub fn is_ok(&self) -> Option<bool> {
+        if self.0.len() == 0 {
+            return None;
         }
 
-        true
+        let mut first = ' ';
+        let mut last = ' ';
+
+        for (i, c) in self.0.chars().enumerate() {
+            if !is_ok_char(c) {
+                return Some(false);
+            }
+
+            if i == 0 {
+                first = c;
+            }
+
+            last = c;
+        }
+
+        if first == ' ' {
+            return Some(false);
+        }
+
+        if last == ' ' {
+            return Some(false);
+        }
+
+        Some(true)
     }
 
     pub fn fix_me(&mut self) {
