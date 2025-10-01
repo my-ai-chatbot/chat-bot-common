@@ -1,6 +1,8 @@
 use std::fmt::Display;
 
-use crate::ObjectId;
+use crate::object_id::ValueValidator;
+
+use super::ObjectId;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ObjectIdStatic(&'static str);
@@ -73,8 +75,8 @@ impl Default for ObjectIdStatic {
     }
 }
 
-impl Into<ObjectId> for ObjectIdStatic {
-    fn into(self) -> ObjectId {
+impl<TObjectIdValidator: ValueValidator> Into<ObjectId<TObjectIdValidator>> for ObjectIdStatic {
+    fn into(self) -> ObjectId<TObjectIdValidator> {
         ObjectId::new(self.0.to_string())
     }
 }

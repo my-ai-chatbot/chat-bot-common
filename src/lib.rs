@@ -13,7 +13,4 @@ pub mod tool_call_resp_models;
 pub use llm_agent_settings::*;
 pub mod cars;
 pub mod history_labels;
-mod object_id;
-pub use object_id::*;
-mod object_id_static;
-pub use object_id_static::*;
+pub mod object_id;
