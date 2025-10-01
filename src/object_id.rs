@@ -6,6 +6,8 @@ use serde::*;
 pub struct ObjectId(String);
 
 impl ObjectId {
+    pub const DEFAULT_REF: Self = Self(String::new());
+
     pub fn new(value: String) -> Self {
         Self(value)
     }
