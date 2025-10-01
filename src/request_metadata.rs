@@ -133,7 +133,14 @@ mod tests {
 
     #[test]
     fn test_parsing_metadata() {
-        let ctx = vec!["lang:ar"];
+        let ctx = vec![
+            "lang:ar",
+            "tenant:ff",
+            "session:45",
+            "tz:Europe/Zurich",
+            "time_offset:150",
+            "ip-country:CH",
+        ];
 
         let meta_data = RequestMetadata::new(ctx.into_iter());
 
