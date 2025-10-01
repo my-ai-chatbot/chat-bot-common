@@ -21,7 +21,7 @@ pub fn is_ok_char(c: char) -> bool {
         return true;
     }
 
-    if c == '-' {
+    if c == '-' || c == '_' {
         return true;
     }
 
