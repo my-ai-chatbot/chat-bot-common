@@ -114,6 +114,12 @@ fn is_ok_char(c: char) -> bool {
     return c as u8 >= 32;
 }
 
+impl AsRef<str> for ObjectId {
+    fn as_ref(&self) -> &str {
+        self.as_str()
+    }
+}
+
 impl Display for ObjectId {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "{}", self.0)
