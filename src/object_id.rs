@@ -57,11 +57,8 @@ impl ObjectId {
         self.0 = result
     }
 
-    pub fn from_str(value: &str) -> Option<Self> {
-        if id_would_be_ok(value) {
-            return Some(Self(value.to_string()));
-        }
-        None
+    pub fn from_str(value: &str) -> Self {
+        Self(value.to_string())
     }
 
     pub fn as_str(&self) -> &str {
