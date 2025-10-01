@@ -1,4 +1,7 @@
-use std::{fmt::Display, marker::PhantomData};
+use std::{
+    fmt::{Debug, Display},
+    marker::PhantomData,
+};
 
 use serde::*;
 
@@ -6,7 +9,7 @@ pub trait ValueValidator {
     fn validate_value(src: &str) -> Option<bool>;
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Serialize, Deserialize, PartialEq, Eq, Hash, PartialOrd, Ord)]
 #[serde(transparent)]
 pub struct ObjectId<TObjectIdValidator: ValueValidator> {
     value: String,
@@ -93,6 +96,12 @@ impl<TObjectIdValidator: ValueValidator> Display for ObjectId<TObjectIdValidator
     }
 }
 
+impl<TObjectIdValidator: ValueValidator> Debug for ObjectId<TObjectIdValidator> {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{}", self.value)
+    }
+}
+
 impl<TObjectIdValidator: ValueValidator> Into<String> for ObjectId<TObjectIdValidator> {
     fn into(self) -> String {
         self.value
@@ -125,7 +134,6 @@ mod test {
 
     use super::ObjectId;
 
-    #[derive(Debug)]
     pub struct TestObjectIdValidator;
 
     impl ValueValidator for TestObjectIdValidator {
