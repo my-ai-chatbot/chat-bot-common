@@ -1,8 +1,6 @@
 use std::fmt::Display;
 
-use crate::object_id::IdExtension;
-
-use super::ObjectId;
+use super::*;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ObjectIdStatic(&'static str);

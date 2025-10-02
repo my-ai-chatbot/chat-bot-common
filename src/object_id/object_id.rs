@@ -6,6 +6,10 @@ use std::{
 use super::*;
 use serde::*;
 
+pub trait IdExtension {
+    fn validate_value(src: &str) -> Option<bool>;
+}
+
 #[derive(Clone, Serialize, Deserialize, PartialEq, Eq, Hash, PartialOrd, Ord)]
 #[serde(transparent)]
 pub struct ObjectId<TObjectIdValidator: IdExtension> {
@@ -145,7 +149,7 @@ impl<TObjectIdValidator: IdExtension> IdExtension for ObjectId<TObjectIdValidato
 mod test {
     use serde::*;
 
-    use crate::object_id::IdExtension;
+    use super::IdExtension;
 
     use super::ObjectId;
 
