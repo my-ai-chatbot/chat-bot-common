@@ -6,11 +6,13 @@ pub enum ValueValidationResult {
     MaxValueViolation,
 }
 
-pub trait ValueValidator {
+pub trait ValueValidator<TValue: Sized> {
     fn validate_value(&self) -> Result<(), ValueValidationResult>;
+    fn set_min_value(&mut self, value: TValue);
+    fn set_max_value(&mut self, value: TValue);
 }
 
-impl ValueValidator for String {
+impl ValueValidator<String> for String {
     fn validate_value(&self) -> Result<(), ValueValidationResult> {
         if self.len() == 0 {
             return Err(ValueValidationResult::Empty);
@@ -18,9 +20,11 @@ impl ValueValidator for String {
 
         Ok(())
     }
+    fn set_min_value(&mut self, _value: String) {}
+    fn set_max_value(&mut self, _value: String) {}
 }
 
-impl ValueValidator for &'_ str {
+impl<'s> ValueValidator<&'s str> for &'s str {
     fn validate_value(&self) -> Result<(), ValueValidationResult> {
         if self.len() == 0 {
             return Err(ValueValidationResult::Empty);
@@ -28,9 +32,12 @@ impl ValueValidator for &'_ str {
 
         Ok(())
     }
+
+    fn set_min_value(&mut self, _value: &'s str) {}
+    fn set_max_value(&mut self, _value: &'s str) {}
 }
 
-impl ValueValidator for str {
+impl<'s> ValueValidator<&'s String> for &'s String {
     fn validate_value(&self) -> Result<(), ValueValidationResult> {
         if self.len() == 0 {
             return Err(ValueValidationResult::Empty);
@@ -38,14 +45,7 @@ impl ValueValidator for str {
 
         Ok(())
     }
-}
 
-impl ValueValidator for &'_ String {
-    fn validate_value(&self) -> Result<(), ValueValidationResult> {
-        if self.len() == 0 {
-            return Err(ValueValidationResult::Empty);
-        }
-
-        Ok(())
-    }
+    fn set_min_value(&mut self, _value: &'s String) {}
+    fn set_max_value(&mut self, _value: &'s String) {}
 }
