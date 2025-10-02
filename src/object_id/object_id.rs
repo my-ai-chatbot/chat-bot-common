@@ -79,14 +79,10 @@ impl<TObjectIdValidator: IdExtension> ObjectId<TObjectIdValidator> {
     }
 }
 
-impl<TObjectIdValidator: IdExtension> ValueValidator<TObjectIdValidator>
-    for ObjectId<TObjectIdValidator>
-{
+impl<TObjectIdValidator: IdExtension> ValueValidator for ObjectId<TObjectIdValidator> {
     fn validate_value(&self) -> Result<(), ValueValidationResult> {
         self.validate()
     }
-    fn set_min_value(&mut self, _value: TObjectIdValidator) {}
-    fn set_max_value(&mut self, _value: TObjectIdValidator) {}
 }
 
 impl<TObjectIdValidator: IdExtension> AsStr for ObjectId<TObjectIdValidator> {
