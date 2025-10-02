@@ -75,6 +75,12 @@ impl<TObjectIdValidator: ValueValidator> ObjectId<TObjectIdValidator> {
     }
 }
 
+impl<TObjectIdValidator: ValueValidator> AsStr for ObjectId<TObjectIdValidator> {
+    fn as_str(&self) -> &str {
+        self.value.as_str()
+    }
+}
+
 impl<TObjectIdValidator: ValueValidator> Default for ObjectId<TObjectIdValidator> {
     fn default() -> Self {
         Self::new(Default::default())
