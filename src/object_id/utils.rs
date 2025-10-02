@@ -1,15 +1,17 @@
-pub fn validate_generic_object_id(src: &str) -> Option<bool> {
+use crate::object_id::ValueValidationResult;
+
+pub fn validate_generic_object_id(src: &str) -> Result<(), ValueValidationResult> {
     if src.len() == 0 {
-        return None;
+        return Err(ValueValidationResult::Empty);
     }
 
     for c in src.chars() {
         if !is_ok_char(c) {
-            return Some(false);
+            return Err(ValueValidationResult::IllegalChars);
         }
     }
 
-    Some(true)
+    Ok(())
 }
 
 pub fn is_ok_char(c: char) -> bool {

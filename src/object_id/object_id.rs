@@ -7,7 +7,7 @@ use super::*;
 use serde::*;
 
 pub trait IdExtension {
-    fn validate_value(src: &str) -> Option<bool>;
+    fn validate_value(src: &str) -> Result<(), ValueValidationResult>;
 }
 
 #[derive(Clone, Serialize, Deserialize, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -31,7 +31,7 @@ impl<TObjectIdValidator: IdExtension> ObjectId<TObjectIdValidator> {
         }
     }
 
-    pub fn is_ok(&self) -> Option<bool> {
+    pub fn is_ok(&self) -> Result<(), ValueValidationResult> {
         TObjectIdValidator::validate_value(&self.value)
     }
 
@@ -80,7 +80,7 @@ impl<TObjectIdValidator: IdExtension> ObjectId<TObjectIdValidator> {
 }
 
 impl<TObjectIdValidator: IdExtension> ValueValidator for ObjectId<TObjectIdValidator> {
-    fn validate_value(&self) -> Option<bool> {
+    fn validate_value(&self) -> Result<(), ValueValidationResult> {
         self.is_ok()
     }
 }
@@ -140,7 +140,7 @@ impl<TObjectIdValidator: IdExtension> From<String> for ObjectId<TObjectIdValidat
 }
 
 impl<TObjectIdValidator: IdExtension> IdExtension for ObjectId<TObjectIdValidator> {
-    fn validate_value(src: &str) -> Option<bool> {
+    fn validate_value(src: &str) -> Result<(), ValueValidationResult> {
         TObjectIdValidator::validate_value(src)
     }
 }
@@ -149,6 +149,8 @@ impl<TObjectIdValidator: IdExtension> IdExtension for ObjectId<TObjectIdValidato
 mod test {
     use serde::*;
 
+    use crate::object_id::ValueValidationResult;
+
     use super::IdExtension;
 
     use super::ObjectId;
@@ -156,7 +158,7 @@ mod test {
     pub struct TestObjectIdValidator;
 
     impl IdExtension for TestObjectIdValidator {
-        fn validate_value(src: &str) -> Option<bool> {
+        fn validate_value(src: &str) -> Result<(), ValueValidationResult> {
             super::super::utils::validate_generic_object_id(src)
         }
     }
