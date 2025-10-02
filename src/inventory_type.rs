@@ -39,6 +39,10 @@ impl InventoryType {
         }
     }
 
+    pub fn to_string(&self) -> String {
+        self.as_str().to_string()
+    }
+
     pub fn is_salesteq(&self) -> bool {
         matches!(self, Self::SalesTeq)
     }
