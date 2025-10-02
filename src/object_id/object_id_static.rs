@@ -12,7 +12,7 @@ impl ObjectIdStatic {
         Self(value)
     }
 
-    pub fn is_ok(&self) -> Option<bool> {
+    pub fn validate(&self) -> Option<bool> {
         if self.0.len() == 0 {
             return None;
         }

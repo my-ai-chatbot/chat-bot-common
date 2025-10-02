@@ -31,7 +31,7 @@ impl<TObjectIdValidator: IdExtension> ObjectId<TObjectIdValidator> {
         }
     }
 
-    pub fn is_ok(&self) -> Result<(), ValueValidationResult> {
+    pub fn validate(&self) -> Result<(), ValueValidationResult> {
         TObjectIdValidator::validate_value(&self.value)
     }
 
@@ -81,7 +81,7 @@ impl<TObjectIdValidator: IdExtension> ObjectId<TObjectIdValidator> {
 
 impl<TObjectIdValidator: IdExtension> ValueValidator for ObjectId<TObjectIdValidator> {
     fn validate_value(&self) -> Result<(), ValueValidationResult> {
-        self.is_ok()
+        self.validate()
     }
 }
 
