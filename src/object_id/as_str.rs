@@ -14,6 +14,12 @@ impl AsStr for &'_ str {
     }
 }
 
+impl AsStr for str {
+    fn as_str(&self) -> &str {
+        self
+    }
+}
+
 impl AsStr for &'_ String {
     fn as_str(&self) -> &str {
         self
