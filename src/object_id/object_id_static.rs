@@ -1,6 +1,6 @@
 use std::fmt::Display;
 
-use crate::object_id::ValueValidator;
+use crate::object_id::IdExtension;
 
 use super::ObjectId;
 
@@ -75,7 +75,7 @@ impl Default for ObjectIdStatic {
     }
 }
 
-impl<TObjectIdValidator: ValueValidator> Into<ObjectId<TObjectIdValidator>> for ObjectIdStatic {
+impl<TObjectIdValidator: IdExtension> Into<ObjectId<TObjectIdValidator>> for ObjectIdStatic {
     fn into(self) -> ObjectId<TObjectIdValidator> {
         ObjectId::new(self.0.to_string())
     }

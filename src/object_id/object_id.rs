@@ -8,13 +8,13 @@ use serde::*;
 
 #[derive(Clone, Serialize, Deserialize, PartialEq, Eq, Hash, PartialOrd, Ord)]
 #[serde(transparent)]
-pub struct ObjectId<TObjectIdValidator: ValueValidator> {
+pub struct ObjectId<TObjectIdValidator: IdExtension> {
     value: String,
     #[serde(skip)]
     phantom: PhantomData<TObjectIdValidator>,
 }
 
-impl<TObjectIdValidator: ValueValidator> ObjectId<TObjectIdValidator> {
+impl<TObjectIdValidator: IdExtension> ObjectId<TObjectIdValidator> {
     pub const DEFAULT_REF: Self = Self {
         value: String::new(),
         phantom: PhantomData,
@@ -75,61 +75,67 @@ impl<TObjectIdValidator: ValueValidator> ObjectId<TObjectIdValidator> {
     }
 }
 
-impl<TObjectIdValidator: ValueValidator> AsStr for ObjectId<TObjectIdValidator> {
+impl<TObjectIdValidator: IdExtension> ValueValidator for ObjectId<TObjectIdValidator> {
+    fn validate_value(&self) -> Option<bool> {
+        self.is_ok()
+    }
+}
+
+impl<TObjectIdValidator: IdExtension> AsStr for ObjectId<TObjectIdValidator> {
     fn as_str(&self) -> &str {
         self.value.as_str()
     }
 }
 
-impl<TObjectIdValidator: ValueValidator> Default for ObjectId<TObjectIdValidator> {
+impl<TObjectIdValidator: IdExtension> Default for ObjectId<TObjectIdValidator> {
     fn default() -> Self {
         Self::new(Default::default())
     }
 }
 
-impl<TObjectIdValidator: ValueValidator> AsRef<str> for ObjectId<TObjectIdValidator> {
+impl<TObjectIdValidator: IdExtension> AsRef<str> for ObjectId<TObjectIdValidator> {
     fn as_ref(&self) -> &str {
         self.as_str()
     }
 }
 
-impl<TObjectIdValidator: ValueValidator> Display for ObjectId<TObjectIdValidator> {
+impl<TObjectIdValidator: IdExtension> Display for ObjectId<TObjectIdValidator> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "{}", self.value)
     }
 }
 
-impl<TObjectIdValidator: ValueValidator> Debug for ObjectId<TObjectIdValidator> {
+impl<TObjectIdValidator: IdExtension> Debug for ObjectId<TObjectIdValidator> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "{}", self.value)
     }
 }
 
-impl<TObjectIdValidator: ValueValidator> Into<String> for ObjectId<TObjectIdValidator> {
+impl<TObjectIdValidator: IdExtension> Into<String> for ObjectId<TObjectIdValidator> {
     fn into(self) -> String {
         self.value
     }
 }
 
-impl<TObjectIdValidator: ValueValidator> Into<ObjectId<TObjectIdValidator>> for &'_ str {
+impl<TObjectIdValidator: IdExtension> Into<ObjectId<TObjectIdValidator>> for &'_ str {
     fn into(self) -> ObjectId<TObjectIdValidator> {
         ObjectId::new(self.to_string())
     }
 }
 
-impl<TObjectIdValidator: ValueValidator> Into<ObjectId<TObjectIdValidator>> for &'_ String {
+impl<TObjectIdValidator: IdExtension> Into<ObjectId<TObjectIdValidator>> for &'_ String {
     fn into(self) -> ObjectId<TObjectIdValidator> {
         ObjectId::new(self.to_string())
     }
 }
 
-impl<TObjectIdValidator: ValueValidator> From<String> for ObjectId<TObjectIdValidator> {
+impl<TObjectIdValidator: IdExtension> From<String> for ObjectId<TObjectIdValidator> {
     fn from(value: String) -> Self {
         Self::new(value)
     }
 }
 
-impl<TObjectIdValidator: ValueValidator> ValueValidator for ObjectId<TObjectIdValidator> {
+impl<TObjectIdValidator: IdExtension> IdExtension for ObjectId<TObjectIdValidator> {
     fn validate_value(src: &str) -> Option<bool> {
         TObjectIdValidator::validate_value(src)
     }
@@ -139,13 +145,13 @@ impl<TObjectIdValidator: ValueValidator> ValueValidator for ObjectId<TObjectIdVa
 mod test {
     use serde::*;
 
-    use crate::object_id::ValueValidator;
+    use crate::object_id::IdExtension;
 
     use super::ObjectId;
 
     pub struct TestObjectIdValidator;
 
-    impl ValueValidator for TestObjectIdValidator {
+    impl IdExtension for TestObjectIdValidator {
         fn validate_value(src: &str) -> Option<bool> {
             super::super::utils::validate_generic_object_id(src)
         }
