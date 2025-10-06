@@ -10,6 +10,9 @@ pub const SEND_SMS_EVENT: &'static str = "send-sms";
 // Client trying to verify phone by sending code
 pub const PHONE_VERIFICATION_ATTEMPT: &'static str = "phone-verification-attempt";
 
+// Lead registration
+pub const LEAD_REGISTRATION_EVENT: &'static str = "lead-registration";
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Default, Clone)]
 pub struct AuditLogChatModel {
     pub client_question: String,
