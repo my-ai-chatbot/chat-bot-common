@@ -7,17 +7,18 @@ pub trait LlmAgentGenericSettings {
     fn get_presence_penalty(&self) -> Option<f64>;
     fn get_frequency_penalty(&self) -> Option<f64>;
     fn get_think(&self) -> bool;
-    fn get_reasoning_effort(&self) -> Option<Gpt5ReasoningEffort>;
-    fn get_verbosity(&self) -> Option<Gpt5Verbosity>;
+    fn get_reasoning_effort(&self) -> Gpt5ReasoningEffort;
+    fn get_verbosity(&self) -> Gpt5Verbosity;
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Serialize, Deserialize, Clone, Copy, PartialEq, Eq, Default)]
 pub enum Gpt5ReasoningEffort {
     #[serde(rename = "hight")]
     Hight,
     #[serde(rename = "minimal")]
     Minimal,
     #[serde(rename = "low")]
+    #[default]
     Low,
 }
 
@@ -46,13 +47,14 @@ impl Gpt5ReasoningEffort {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Serialize, Deserialize, Clone, Copy, PartialEq, Eq, Default)]
 pub enum Gpt5Verbosity {
     #[serde(rename = "hight")]
     Hight,
     #[serde(rename = "medium")]
     Medium,
     #[serde(rename = "low")]
+    #[default]
     Low,
 }
 
