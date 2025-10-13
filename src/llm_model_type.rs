@@ -1,3 +1,5 @@
+use std::str::FromStr;
+
 use serde::*;
 
 pub const GPT_4O: &'static str = "gpt-4o";
@@ -98,9 +100,19 @@ impl dioxus_admin_ui_kit::types::EnumIterator for ChatBotLlmModel {
     }
 }
 
-#[cfg(feature = "dioxus")]
 impl rust_extensions::AsStr for ChatBotLlmModel {
     fn as_str(&self) -> &'static str {
         self.as_str()
+    }
+}
+
+impl FromStr for ChatBotLlmModel {
+    type Err = String;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        match Self::try_from_str(s) {
+            Some(value) => return Ok(value),
+            None => return Err(format!("Invalid '{}' value to parse ChatBotLlmModel", s)),
+        }
     }
 }

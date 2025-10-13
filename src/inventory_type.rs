@@ -1,3 +1,5 @@
+use std::str::FromStr;
+
 use serde::*;
 
 pub const MINAGHI_AUTO: &'static str = "minaghi-auto";
@@ -81,9 +83,19 @@ impl dioxus_admin_ui_kit::types::EnumIterator for InventoryType {
     }
 }
 
-#[cfg(feature = "dioxus")]
 impl rust_extensions::AsStr for InventoryType {
     fn as_str(&self) -> &'static str {
         self.as_str()
+    }
+}
+
+impl FromStr for InventoryType {
+    type Err = String;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        match Self::try_from_str(s) {
+            Some(value) => return Ok(value),
+            None => return Err(format!("Invalid '{}' value to parse InventoryType", s)),
+        }
     }
 }
