@@ -54,3 +54,29 @@ pub fn get_default_by_language(lang_id: &Language) -> SttOption {
         Language::Ar => SttOption::Munsit,
     }
 }
+
+#[cfg(feature = "dioxus")]
+impl dioxus_admin_ui_kit::types::EnumIterator for SttOption {
+    type TItem = Self;
+
+    fn get_value(&self) -> Self
+    where
+        Self: Sized,
+    {
+        *self
+    }
+
+    fn get_all() -> &'static [Self::TItem]
+    where
+        Self: Sized,
+    {
+        Self::ALL
+    }
+}
+
+#[cfg(feature = "dioxus")]
+impl rust_extensions::AsStr for SttOption {
+    fn as_str(&self) -> &'static str {
+        self.as_str()
+    }
+}

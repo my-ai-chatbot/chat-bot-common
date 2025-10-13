@@ -52,3 +52,29 @@ impl Default for Language {
         Self::En
     }
 }
+
+#[cfg(feature = "dioxus")]
+impl dioxus_admin_ui_kit::types::EnumIterator for Language {
+    type TItem = Self;
+
+    fn get_value(&self) -> Self
+    where
+        Self: Sized,
+    {
+        *self
+    }
+
+    fn get_all() -> &'static [Self::TItem]
+    where
+        Self: Sized,
+    {
+        Self::ALL_LANGUAGES
+    }
+}
+
+#[cfg(feature = "dioxus")]
+impl rust_extensions::AsStr for Language {
+    fn as_str(&self) -> &'static str {
+        self.as_str()
+    }
+}
