@@ -1,3 +1,5 @@
+use std::str::FromStr;
+
 use serde::{Deserialize, Serialize};
 
 use crate::languages::Language;
@@ -74,9 +76,19 @@ impl dioxus_admin_ui_kit::types::EnumIterator for SttOption {
     }
 }
 
-#[cfg(feature = "dioxus")]
 impl rust_extensions::AsStr for SttOption {
     fn as_str(&self) -> &'static str {
         self.as_str()
+    }
+}
+
+impl FromStr for SttOption {
+    type Err = String;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        match Self::try_from_str(s) {
+            Some(value) => return Ok(value),
+            None => return Err(format!("Invalid '{}' value to parse SttOption", s)),
+        }
     }
 }
