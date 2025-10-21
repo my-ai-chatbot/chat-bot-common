@@ -38,6 +38,13 @@ impl ChatBotLlmModel {
         Self::Qwen3_30BA3n,
     ];
 
+    pub fn is_open_ai_agent(&self) -> bool {
+        match self {
+            ChatBotLlmModel::OpenAiAgent => true,
+            _ => false,
+        }
+    }
+
     pub fn as_generic_llm_type(&self) -> ChatBotLlmGenericType {
         match self {
             ChatBotLlmModel::Gpt4o => ChatBotLlmGenericType::Gpt4,
