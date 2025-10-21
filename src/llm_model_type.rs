@@ -8,6 +8,7 @@ pub const GPT_5: &'static str = "gpt-5";
 pub const GPT_5_MINI: &'static str = "gpt-5-mini";
 pub const GPT_5_NANO: &'static str = "gpt-5-nano";
 pub const QWEN3_30B_A3B: &'static str = "Qwen3-30B-A3B";
+pub const OPEN_AI_AGENT: &'static str = "open-ai-agent";
 
 #[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub enum ChatBotLlmModel {
@@ -17,6 +18,7 @@ pub enum ChatBotLlmModel {
     Gpt5Mini,
     Gpt5Nano,
     Qwen3_30BA3n,
+    OpenAiAgent,
 }
 
 impl Default for ChatBotLlmModel {
@@ -32,6 +34,7 @@ impl ChatBotLlmModel {
         Self::Gpt5,
         Self::Gpt5Mini,
         Self::Gpt5Nano,
+        Self::OpenAiAgent,
         Self::Qwen3_30BA3n,
     ];
 
@@ -43,6 +46,7 @@ impl ChatBotLlmModel {
             ChatBotLlmModel::Gpt5Mini => ChatBotLlmGenericType::Gpt5,
             ChatBotLlmModel::Gpt5Nano => ChatBotLlmGenericType::Gpt5,
             ChatBotLlmModel::Qwen3_30BA3n => ChatBotLlmGenericType::Qwen,
+            ChatBotLlmModel::OpenAiAgent => ChatBotLlmGenericType::OpenAiAgent,
         }
     }
 
@@ -54,6 +58,7 @@ impl ChatBotLlmModel {
             GPT_5_MINI => Some(Self::Gpt5Mini),
             GPT_5_NANO => Some(Self::Gpt5Nano),
             QWEN3_30B_A3B => Some(Self::Qwen3_30BA3n),
+            OPEN_AI_AGENT => Some(Self::OpenAiAgent),
             _ => None,
         }
     }
@@ -66,6 +71,7 @@ impl ChatBotLlmModel {
             Self::Gpt5Mini => GPT_5_MINI,
             Self::Gpt5Nano => GPT_5_NANO,
             Self::Qwen3_30BA3n => QWEN3_30B_A3B,
+            Self::OpenAiAgent => OPEN_AI_AGENT,
         }
     }
 
@@ -79,6 +85,7 @@ pub enum ChatBotLlmGenericType {
     Gpt4,
     Gpt5,
     Qwen,
+    OpenAiAgent,
 }
 
 #[cfg(feature = "dioxus")]
