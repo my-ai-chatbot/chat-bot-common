@@ -8,7 +8,7 @@ pub const GPT_5: &'static str = "gpt-5";
 pub const GPT_5_MINI: &'static str = "gpt-5-mini";
 pub const GPT_5_NANO: &'static str = "gpt-5-nano";
 pub const QWEN3_30B_A3B: &'static str = "Qwen3-30B-A3B";
-pub const ZAI_GLM_4_5: &'static str = "zai-org/glm-4.5";
+pub const ZAI_GLM_4_5: &'static str = "zai-org-glm-4.5";
 pub const OPEN_AI_AGENT: &'static str = "open-ai-agent";
 
 #[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -70,6 +70,7 @@ impl ChatBotLlmModel {
             GPT_5_NANO => Some(Self::Gpt5Nano),
             QWEN3_30B_A3B => Some(Self::Qwen3_30BA3n),
             OPEN_AI_AGENT => Some(Self::OpenAiAgent),
+            ZAI_GLM_4_5 => Some(Self::ZaiGlm4_5),
             _ => None,
         }
     }
