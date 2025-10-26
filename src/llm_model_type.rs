@@ -9,7 +9,7 @@ pub const GPT_5_MINI: &'static str = "gpt-5-mini";
 pub const GPT_5_NANO: &'static str = "gpt-5-nano";
 pub const QWEN3_30B_A3B: &'static str = "Qwen3-30B-A3B";
 pub const ZAI_GLM_4_5: &'static str = "zai-org-glm-4.5";
-pub const ZAI_GLM_4_5_AIR: &'static str = "zai-org-glm-4.5-Air";
+pub const ZAI_GLM_4_6: &'static str = "zai-org-glm-4.6";
 pub const OPEN_AI_AGENT: &'static str = "open-ai-agent";
 
 #[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -21,7 +21,7 @@ pub enum ChatBotLlmModel {
     Gpt5Nano,
     Qwen3_30BA3n,
     ZaiGlm4_5,
-    ZaiGlm4_5Air,
+    ZaiGlm4_6,
     OpenAiAgent,
 }
 
@@ -41,7 +41,7 @@ impl ChatBotLlmModel {
         Self::OpenAiAgent,
         Self::Qwen3_30BA3n,
         Self::ZaiGlm4_5,
-        Self::ZaiGlm4_5Air,
+        Self::ZaiGlm4_6,
     ];
 
     pub fn is_open_ai_agent(&self) -> bool {
@@ -61,7 +61,7 @@ impl ChatBotLlmModel {
             ChatBotLlmModel::Qwen3_30BA3n => ChatBotLlmGenericType::Qwen,
             ChatBotLlmModel::OpenAiAgent => ChatBotLlmGenericType::OpenAiAgent,
             ChatBotLlmModel::ZaiGlm4_5 => ChatBotLlmGenericType::Zai,
-            ChatBotLlmModel::ZaiGlm4_5Air => ChatBotLlmGenericType::Zai,
+            ChatBotLlmModel::ZaiGlm4_6 => ChatBotLlmGenericType::Zai,
         }
     }
 
@@ -75,7 +75,7 @@ impl ChatBotLlmModel {
             QWEN3_30B_A3B => Some(Self::Qwen3_30BA3n),
             OPEN_AI_AGENT => Some(Self::OpenAiAgent),
             ZAI_GLM_4_5 => Some(Self::ZaiGlm4_5),
-            ZAI_GLM_4_5_AIR => Some(Self::ZaiGlm4_5Air),
+            ZAI_GLM_4_6 => Some(Self::ZaiGlm4_6),
             _ => None,
         }
     }
@@ -90,7 +90,7 @@ impl ChatBotLlmModel {
             Self::Qwen3_30BA3n => QWEN3_30B_A3B,
             Self::OpenAiAgent => OPEN_AI_AGENT,
             Self::ZaiGlm4_5 => ZAI_GLM_4_5,
-            Self::ZaiGlm4_5Air => ZAI_GLM_4_5_AIR,
+            Self::ZaiGlm4_6 => ZAI_GLM_4_6,
         }
     }
 
