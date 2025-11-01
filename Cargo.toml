@@ -16,4 +16,4 @@ rust-common = { tag = "0.1.1", git = "https://github.com/MyJetTools/rust-common.
 
 serde_json = "*"
 
-dioxus-admin-ui-kit = { tag = "0.1.0", git = "https://github.com/MyJetTools/dioxus-admin-ui-kit.git", optional = true }
+dioxus-admin-ui-kit = { tag = "0.7.0", git = "https://github.com/MyJetTools/dioxus-admin-ui-kit.git", optional = true }
