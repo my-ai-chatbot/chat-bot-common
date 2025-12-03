@@ -14,3 +14,5 @@ pub mod tool_call_resp_models;
 
 pub mod cars;
 pub mod history_labels;
+mod tts_options;
+pub use tts_options::*;
