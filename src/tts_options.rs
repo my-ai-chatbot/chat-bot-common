@@ -45,7 +45,7 @@ impl TtsOption {
 
 impl Default for TtsOption {
     fn default() -> Self {
-        Self::Kokoro
+        Self::ElevenLabs
     }
 }
 
