@@ -39,7 +39,7 @@ impl TtsOption {
     }
 
     pub fn get_default_by_language(_lang_id: &Language) -> Self {
-        Self::Kokoro
+        Self::default()
     }
 }
 
