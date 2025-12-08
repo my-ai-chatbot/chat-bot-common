@@ -91,6 +91,7 @@ impl ChatBotLlmModel {
             ZAI_GLM_4_5_AIR => Some(Self::ZaiGlm4_5Air),
             ZAI_GLM_4_5_X => Some(Self::ZaiGlm4_5X),
             ZAI_GLM_4_6 => Some(Self::ZaiGlm4_6),
+            FIREWORKS_ZAI_GLM_4_6 => Some(Self::FireworksZaiGlm4_6),
             _ => None,
         }
     }
