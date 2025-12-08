@@ -14,6 +14,8 @@ pub const ZAI_GLM_4_5_X: &'static str = "zai-glm-4.5-x";
 pub const ZAI_GLM_4_6: &'static str = "zai-org-glm-4.6";
 pub const OPEN_AI_AGENT: &'static str = "open-ai-agent";
 
+pub const FIREWORKS_ZAI_GLM_4_6: &'static str = "fireworks/zai-org-glm-4.6";
+
 #[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub enum ChatBotLlmModel {
     Gpt4o,
@@ -26,6 +28,7 @@ pub enum ChatBotLlmModel {
     ZaiGlm4_5Air,
     ZaiGlm4_5X,
     ZaiGlm4_6,
+    FireworksZaiGlm4_6,
     OpenAiAgent,
 }
 
@@ -48,6 +51,7 @@ impl ChatBotLlmModel {
         Self::ZaiGlm4_5Air,
         Self::ZaiGlm4_5X,
         Self::ZaiGlm4_6,
+        Self::FireworksZaiGlm4_6,
     ];
 
     pub fn is_open_ai_agent(&self) -> bool {
@@ -59,17 +63,18 @@ impl ChatBotLlmModel {
 
     pub fn as_generic_llm_type(&self) -> ChatBotLlmGenericType {
         match self {
-            ChatBotLlmModel::Gpt4o => ChatBotLlmGenericType::Gpt4,
-            ChatBotLlmModel::Gpt4oMini => ChatBotLlmGenericType::Gpt4,
-            ChatBotLlmModel::Gpt5 => ChatBotLlmGenericType::Gpt5,
-            ChatBotLlmModel::Gpt5Mini => ChatBotLlmGenericType::Gpt5,
-            ChatBotLlmModel::Gpt5Nano => ChatBotLlmGenericType::Gpt5,
-            ChatBotLlmModel::Qwen3_30BA3n => ChatBotLlmGenericType::Qwen,
-            ChatBotLlmModel::OpenAiAgent => ChatBotLlmGenericType::OpenAiAgent,
-            ChatBotLlmModel::ZaiGlm4_5 => ChatBotLlmGenericType::Zai,
-            ChatBotLlmModel::ZaiGlm4_5Air => ChatBotLlmGenericType::Zai,
-            ChatBotLlmModel::ZaiGlm4_5X => ChatBotLlmGenericType::Zai,
-            ChatBotLlmModel::ZaiGlm4_6 => ChatBotLlmGenericType::Zai,
+            Self::Gpt4o => ChatBotLlmGenericType::Gpt4,
+            Self::Gpt4oMini => ChatBotLlmGenericType::Gpt4,
+            Self::Gpt5 => ChatBotLlmGenericType::Gpt5,
+            Self::Gpt5Mini => ChatBotLlmGenericType::Gpt5,
+            Self::Gpt5Nano => ChatBotLlmGenericType::Gpt5,
+            Self::Qwen3_30BA3n => ChatBotLlmGenericType::Qwen,
+            Self::OpenAiAgent => ChatBotLlmGenericType::OpenAiAgent,
+            Self::ZaiGlm4_5 => ChatBotLlmGenericType::Zai,
+            Self::ZaiGlm4_5Air => ChatBotLlmGenericType::Zai,
+            Self::ZaiGlm4_5X => ChatBotLlmGenericType::Zai,
+            Self::ZaiGlm4_6 => ChatBotLlmGenericType::Zai,
+            Self::FireworksZaiGlm4_6 => ChatBotLlmGenericType::FireworksZai,
         }
     }
 
@@ -103,6 +108,7 @@ impl ChatBotLlmModel {
             Self::ZaiGlm4_6 => ZAI_GLM_4_6,
             Self::ZaiGlm4_5Air => ZAI_GLM_4_5_AIR,
             Self::ZaiGlm4_5X => ZAI_GLM_4_5_X,
+            Self::FireworksZaiGlm4_6 => FIREWORKS_ZAI_GLM_4_6,
         }
     }
 
@@ -118,6 +124,7 @@ pub enum ChatBotLlmGenericType {
     Qwen,
     OpenAiAgent,
     Zai,
+    FireworksZai,
 }
 
 #[cfg(feature = "dioxus")]
