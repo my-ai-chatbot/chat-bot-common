@@ -53,6 +53,7 @@ impl ChatBotLlmModel {
         Self::ZaiGlm4_5X,
         Self::ZaiGlm4_6,
         Self::FireworksZaiGlm4_6,
+        Self::CerebrasZaiGlm4_6,
     ];
 
     pub fn is_open_ai_agent(&self) -> bool {
