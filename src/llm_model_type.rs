@@ -15,6 +15,7 @@ pub const ZAI_GLM_4_6: &'static str = "zai-org-glm-4.6";
 pub const OPEN_AI_AGENT: &'static str = "open-ai-agent";
 pub const FIREWORKS_ZAI_GLM_4_6: &'static str = "fireworks/zai-org-glm-4.6";
 pub const CEREBRAS_ZAI_GLM_4_6: &'static str = "cerebras/zai-org-glm-4.6";
+pub const CEREBRAS_ZAI_GLM_4_7: &'static str = "cerebras/zai-org-glm-4.7";
 
 #[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub enum ChatBotLlmModel {
@@ -30,6 +31,7 @@ pub enum ChatBotLlmModel {
     ZaiGlm4_6,
     FireworksZaiGlm4_6,
     CerebrasZaiGlm4_6,
+    CerebrasZaiGlm4_7,
     OpenAiAgent,
 }
 
@@ -54,6 +56,7 @@ impl ChatBotLlmModel {
         Self::ZaiGlm4_6,
         Self::FireworksZaiGlm4_6,
         Self::CerebrasZaiGlm4_6,
+        Self::CerebrasZaiGlm4_7,
     ];
 
     pub fn is_open_ai_agent(&self) -> bool {
@@ -77,6 +80,7 @@ impl ChatBotLlmModel {
             Self::ZaiGlm4_5X => ChatBotLlmGenericType::Zai,
             Self::ZaiGlm4_6 => ChatBotLlmGenericType::Zai,
             Self::CerebrasZaiGlm4_6 => ChatBotLlmGenericType::CerebrasZai,
+            Self::CerebrasZaiGlm4_7 => ChatBotLlmGenericType::CerebrasZai,
             Self::FireworksZaiGlm4_6 => ChatBotLlmGenericType::FireworksZai,
         }
     }
@@ -96,6 +100,7 @@ impl ChatBotLlmModel {
             ZAI_GLM_4_6 => Some(Self::ZaiGlm4_6),
             FIREWORKS_ZAI_GLM_4_6 => Some(Self::FireworksZaiGlm4_6),
             CEREBRAS_ZAI_GLM_4_6 => Some(Self::CerebrasZaiGlm4_6),
+            CEREBRAS_ZAI_GLM_4_7 => Some(Self::CerebrasZaiGlm4_7),
             _ => None,
         }
     }
@@ -114,6 +119,7 @@ impl ChatBotLlmModel {
             Self::ZaiGlm4_5Air => ZAI_GLM_4_5_AIR,
             Self::ZaiGlm4_5X => ZAI_GLM_4_5_X,
             Self::CerebrasZaiGlm4_6 => CEREBRAS_ZAI_GLM_4_6,
+            Self::CerebrasZaiGlm4_7 => CEREBRAS_ZAI_GLM_4_7,
             Self::FireworksZaiGlm4_6 => FIREWORKS_ZAI_GLM_4_6,
         }
     }
