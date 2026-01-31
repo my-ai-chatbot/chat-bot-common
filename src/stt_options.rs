@@ -4,10 +4,10 @@ use serde::{Deserialize, Serialize};
 
 use crate::languages::Language;
 
-pub const STT_ELEVEN_LABS: &'static str = "11labs";
-pub const STT_KYUTAI: &'static str = "kyutai";
-pub const STT_MUNSIT: &'static str = "munsit";
-pub const STT_OPEN_AI: &'static str = "open_ai";
+pub const STT_ELEVEN_LABS: &str = "11labs";
+pub const STT_KYUTAI: &str = "kyutai";
+pub const STT_MUNSIT: &str = "munsit";
+pub const STT_OPEN_AI: &str = "open_ai";
 
 #[derive(Debug, Clone, Copy, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum SttOption {
@@ -61,6 +61,7 @@ pub fn get_default_by_language(lang_id: &Language) -> SttOption {
     match lang_id {
         Language::En => SttOption::OpenAi,
         Language::Ar => SttOption::Munsit,
+        Language::Kk => SttOption::OpenAi,
     }
 }
 
@@ -94,8 +95,8 @@ impl FromStr for SttOption {
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         match Self::try_from_str(s) {
-            Some(value) => return Ok(value),
-            None => return Err(format!("Invalid '{}' value to parse SttOption", s)),
+            Some(value) => Ok(value),
+            None => Err(format!("Invalid '{s}' value to parse SttOption")),
         }
     }
 }

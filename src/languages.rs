@@ -1,28 +1,28 @@
 use serde::*;
 
-pub const LANG_EN: &'static str = "en";
-pub const LANG_AR: &'static str = "ar";
+pub const LANG_EN: &str = "en";
+pub const LANG_AR: &str = "ar";
+pub const LANG_KK: &str = "kk";
 
 #[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub enum Language {
     En,
     Ar,
+    Kk,
 }
 
 impl Language {
     pub const ALL_LANGUAGES: &'static [Self] = &[Self::En, Self::Ar];
 
     pub fn is_english(&self) -> bool {
-        match self {
-            Self::En => true,
-            _ => false,
-        }
+        matches!(self, Self::En)
     }
 
     pub fn try_from_str(src: &str) -> Option<Self> {
         match src {
             LANG_EN => Some(Self::En),
             LANG_AR => Some(Self::Ar),
+            LANG_KK => Some(Self::Kk),
             _ => None,
         }
     }
@@ -39,6 +39,7 @@ impl Language {
         match self {
             Self::En => LANG_EN,
             Self::Ar => LANG_AR,
+            Self::Kk => LANG_KK,
         }
     }
 
