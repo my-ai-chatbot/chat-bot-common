@@ -12,7 +12,7 @@ pub enum Language {
 }
 
 impl Language {
-    pub const ALL_LANGUAGES: &'static [Self] = &[Self::En, Self::Ar];
+    pub const ALL_LANGUAGES: &'static [Self] = &[Self::En, Self::Ar, Self::Kk];
 
     pub fn is_english(&self) -> bool {
         matches!(self, Self::En)
