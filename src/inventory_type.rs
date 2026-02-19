@@ -5,12 +5,14 @@ use serde::*;
 pub const MINAGHI_AUTO: &'static str = "minaghi-auto";
 pub const DG_REAL_ESTATE: &'static str = "dg-real-estate";
 pub const SALESTEQ: &'static str = "salesteq";
+pub const SUHNER: &'static str = "suhner";
 
 #[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub enum InventoryType {
     MinaghiAuto,
     DarGlobalRealEstate,
     SalesTeq,
+    Suhner,
 }
 
 impl InventoryType {
@@ -18,6 +20,7 @@ impl InventoryType {
         InventoryType::DarGlobalRealEstate,
         InventoryType::SalesTeq,
         InventoryType::MinaghiAuto,
+        InventoryType::Suhner,
     ];
 
     pub fn try_from_str(src: &str) -> Option<Self> {
@@ -25,6 +28,7 @@ impl InventoryType {
             MINAGHI_AUTO => Self::MinaghiAuto.into(),
             DG_REAL_ESTATE => Self::DarGlobalRealEstate.into(),
             SALESTEQ => Self::SalesTeq.into(),
+            SUHNER => Self::Suhner.into(),
             _ => None,
         }
     }
@@ -38,6 +42,7 @@ impl InventoryType {
             Self::MinaghiAuto => MINAGHI_AUTO,
             Self::DarGlobalRealEstate => DG_REAL_ESTATE,
             Self::SalesTeq => SALESTEQ,
+            Self::Suhner => SUHNER,
         }
     }
 
